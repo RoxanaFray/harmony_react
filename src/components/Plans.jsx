@@ -1,22 +1,25 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import MobileStepper from "@mui/material/MobileStepper";
-import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
-import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
-import SwipeableViews from "react-swipeable-views";
-import { autoPlay } from "react-swipeable-views-utils";
-import { ClassNames } from "@emotion/react";
 import { makeStyles } from "@mui/styles";
 import Container from "@mui/material/Container";
 import FormAndButton from "./FormAndButton";
-import Grid from '@mui/material/Grid';
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import MobileStepper from "@mui/material/MobileStepper";
+import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
+import Fab from "@mui/material/Fab";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#1f2e58",
+    },
+  },
+});
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,51 +36,60 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#1ae8dc",
     height: 370,
     borderRadius: "180px 0 0",
-    width: '100%'
+    width: "100%",
   },
   title: {
-      paddingBottom: 20
-  }
+    paddingBottom: 20,
+  },
+  sliderBottom: {
+    backgroundColor: 'transparent !important',
+    justifyContent: 'center !important',
+    paddingRight: 20
+  },
+  sliderButton: {
+    boxShadow: "none !important",
+    backgroundColor: "white !important",
+    border: '1px solid #1f2e58 !important',
+    marginRight: '20px !important'
+  },
 }));
 
-const images = [
+
+
+
+const steps = [
   {
-    label: "San Francisco – Oakland Bay Bridge, United States",
-    imgPath:
-      "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60",
+    label: "Select campaign settings",
+    description: `For each ad campaign that you create, you can control how much
+              you're willing to spend on clicks and conversions, which networks
+              and geographical locations you want your ads to show on, and more.`,
   },
   {
-    label: "Bird",
-    imgPath:
-      "https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60",
+    label: "Create an ad group",
+    description:
+      "An ad group contains one or more ads which target a shared set of keywords.",
   },
   {
-    label: "Bali, Indonesia",
-    imgPath:
-      "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250&q=80",
-  },
-  {
-    label: "Goč, Serbia",
-    imgPath:
-      "https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60",
+    label: "Create an ad",
+    description: `Try out different ad text to see what brings in the most customers,
+              and learn how to enhance your ads using features like ad extensions.
+              If you run into any problems with your ads, find out how to tell if
+              they're running and how to resolve approval issues.`,
   },
 ];
 
 function Plans() {
+  const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
-  const maxSteps = images.length;
-  const classes = useStyles();
+  const maxSteps = steps.length;
+
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
-  const handleStepChange = (step) => {
-    setActiveStep(step);
   };
 
   return (
@@ -101,76 +113,59 @@ function Plans() {
             </Typography>
           </Grid>
           <Grid item className={classes.sliderBlock}>
-       
-              {/*   <Box sx={{ maxWidth: 400, flexGrow: 1 }}>
-      <Paper
-        square
-        elevation={0}
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          height: 50,
-          pl: 2,
-          bgcolor: 'background.default',
-        }}
-      >
-        <Typography>{images[activeStep].label}</Typography>
-      </Paper>
-      <AutoPlaySwipeableViews
-        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-        index={activeStep}
-        onChangeIndex={handleStepChange}
-        enableMouseEvents
-      >
-        {images.map((step, index) => (
-          <div key={step.label}>
-            {Math.abs(activeStep - index) <= 2 ? (
+            <Box sx={{ maxWidth: 850, flexGrow: 1, marginLeft: 5 }} >
               <Box
-                component="img"
                 sx={{
-                  height: 255,
-                  display: 'block',
-                  maxWidth: 400,
-                  overflow: 'hidden',
-                  width: '100%',
+                  height: 220,
+                  maxWidth: 850,
+                  width: "100%",
+                  p: 2,
+                  marginTop: 2,
                 }}
-                src={step.imgPath}
-                alt={step.label}
+              >
+                {steps[activeStep].description}
+              </Box>
+              <ThemeProvider theme={theme}>
+              <MobileStepper
+                className={classes.sliderBottom}
+                variant="none" /* Здесь можешь добавить вместо none - dots/progress/text */
+                steps={maxSteps}
+                position="static"
+                activeStep={activeStep}
+                nextButton={
+                  <Fab
+                    size="medium"
+                    aria-label="next"
+                    onClick={handleNext}
+                    disabled={activeStep === maxSteps - 1}
+                    className={classes.sliderButton}
+                  >
+                    {theme.direction === "rtl" ? (
+                      <KeyboardArrowLeft />
+                    ) : (
+                      <KeyboardArrowRight />
+                    )}
+                  </Fab>
+                }
+                backButton={
+                  <Fab
+                    size="medium"
+                    onClick={handleBack}
+                    disabled={activeStep === 0}
+                   
+                    aria-label="back"
+                    className={classes.sliderButton}
+                  >
+                    {theme.direction === "rtl" ? (
+                      <KeyboardArrowRight />
+                    ) : (
+                      <KeyboardArrowLeft />
+                    )}
+                  </Fab>
+                }
               />
-            ) : null}
-          </div>
-        ))}
-      </AutoPlaySwipeableViews>
-      <MobileStepper
-        steps={maxSteps}
-        position="static"
-        activeStep={activeStep}
-        nextButton={
-          <Button
-            size="small"
-            onClick={handleNext}
-            disabled={activeStep === maxSteps - 1}
-          >
-            Next
-            {theme.direction === 'rtl' ? (
-              <KeyboardArrowLeft />
-            ) : (
-              <KeyboardArrowRight />
-            )}
-          </Button>
-        }
-        backButton={
-          <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-            {theme.direction === 'rtl' ? (
-              <KeyboardArrowRight />
-            ) : (
-              <KeyboardArrowLeft />
-            )}
-            Back
-          </Button>
-        }
-      />
-    </Box> */}
+               </ThemeProvider>
+            </Box>
           </Grid>
           <Grid item>
             <FormAndButton content="Получить консультацию" />
