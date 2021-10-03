@@ -19,20 +19,22 @@ import Checkbox from "@mui/material/Checkbox";
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#1ae8dc",
+      main: "#d5aa88",
+      contrastText: "#1f2e58",
     },
     secondary: {
       main: "#1f2e58",
+      contrastText: "#ffffff",
     },
   },
 });
 
 const useStyles = makeStyles((theme) => ({
-  button: {
+  textButton: {
     boxShadow: "none !important",
   },
+
   buttonText: {
-    color: "#1f2e58",
     textTransform: "none",
     fontWeight: "bold !important",
   },
@@ -47,7 +49,6 @@ const useStyles = makeStyles((theme) => ({
   },
   sendButton: {
     boxShadow: "none !important",
-
   },
   sendButtonText: {
     paddingLeft: 20,
@@ -55,7 +56,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 export default function FormAndButton(props) {
   const classes = useStyles();
@@ -75,9 +75,8 @@ export default function FormAndButton(props) {
         <Fab
           variant="extended"
           size="medium"
-          color="primary"
-          aria-label="add"
-          className={classes.button}
+          color={props.color}
+          className={classes.textButton}
           onClick={handleClickOpen}
         >
           <Typography
@@ -114,30 +113,27 @@ export default function FormAndButton(props) {
             <img src={Logo} width="80" alt="Логотип" />
           </Grid>
           <ThemeProvider theme={theme}>
-
-          <Grid item>
-            <TextField
-              id="outlined-basic"
-              label="Имя"
-              variant="standard"
-              className={classes.textfield}
-              color="secondary"
-
-            />
-          </Grid>
-          <Grid item>
-            <TextField
-              id="outlined-basic"
-              label="Номер телефона"
-              variant="standard"
-              className={classes.textfield}
-              color="secondary"
-            />
-          </Grid>
-          <br />
-          <br />
-          <Grid item>
-          
+            <Grid item>
+              <TextField
+                id="outlined-basic"
+                label="Имя"
+                variant="standard"
+                className={classes.textfield}
+                color="secondary"
+              />
+            </Grid>
+            <Grid item>
+              <TextField
+                id="outlined-basic"
+                label="Номер телефона"
+                variant="standard"
+                className={classes.textfield}
+                color="secondary"
+              />
+            </Grid>
+            <br />
+            <br />
+            <Grid item>
               <Fab
                 variant="extended"
                 size="medium"
@@ -153,8 +149,7 @@ export default function FormAndButton(props) {
                   Отправить
                 </Typography>
               </Fab>
-            
-          </Grid>
+            </Grid>
           </ThemeProvider>
           {/*     <Grid item>
     <Checkbox {...label} defaultChecked />

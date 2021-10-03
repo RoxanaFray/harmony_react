@@ -11,12 +11,15 @@ import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import Fab from "@mui/material/Fab";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const theme = createTheme({
   palette: {
     primary: {
       main: "#1f2e58",
+    },
+    secondary: {
+      main: "#d5aa88",
     },
   },
 });
@@ -25,37 +28,59 @@ const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: "#1f2e58",
   },
+  anchor: {
+    position: "absolute",
+    marginTop: "-100px",
+  },
   container: {
     borderRight: "1px solid white",
     borderLeft: "1px solid white",
   },
-  contentBlock: {
+  content: {
     padding: 100,
   },
   sliderBlock: {
-    backgroundColor: "#1ae8dc",
-    height: 370,
+    backgroundColor: "white",
+    minHeight: 370,
     borderRadius: "180px 0 0",
     width: "100%",
   },
   title: {
     paddingBottom: 20,
+    color: 'white'
   },
   sliderBottom: {
-    backgroundColor: 'transparent !important',
-    justifyContent: 'center !important',
-    paddingRight: 20
+    backgroundColor: "transparent !important",
+    justifyContent: "center !important",
   },
   sliderButton: {
     boxShadow: "none !important",
     backgroundColor: "white !important",
-    border: '1px solid #1f2e58 !important',
-    marginRight: '20px !important'
+    border: "1px solid #1f2e58 !important",
+    marginRight: "20px !important",
   },
+  formButton: {
+    "& span": {
+      color: 'white !important'
+    }
+  },
+  mobileContainer: {
+    paddingLeft: "0px !important",
+    paddingRight: "0px !important",
+  paddingTop: 70,
+  paddingBottom: 50
+  },
+  mobileContent: {
+    width: '100%',
+    paddingLeft: 50,
+    paddingRight: 25,
+  },
+  mobileAnchor: {
+    position: 'absolute',
+    marginTop: '-55px'
+  }
+
 }));
-
-
-
 
 const steps = [
   {
@@ -80,9 +105,12 @@ const steps = [
 
 function Plans() {
   const classes = useStyles();
-  const theme = useTheme();
+  const theme1 = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = steps.length;
+ 
+  const fullScreenMD = useMediaQuery(theme1.breakpoints.down("md"));
+  const fullScreenSM = useMediaQuery(theme1.breakpoints.down("sm"));
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -94,12 +122,14 @@ function Plans() {
 
   return (
     <div className={classes.root}>
-      <Container className={classes.container}>
+      <div id="plans" className={fullScreenMD ? classes.mobileAnchor : classes.anchor}></div>
+
+      <Container className={fullScreenMD ? classes.mobileContainer : classes.container}>
         <Grid
           container
           direction="column"
-          alignItems="flex-end"
-          className={classes.contentBlock}
+          alignItems={fullScreenMD ? 'center' : 'flex-end'}
+          className={fullScreenMD ? classes.mobileContent : classes.content}
           spacing={4}
         >
           <Grid item>
@@ -108,15 +138,16 @@ function Plans() {
               gutterBottom
               component="div"
               className={classes.title}
+              align={fullScreenMD ? "center" : "left"}
             >
               ПЛАНИРОВКИ
             </Typography>
           </Grid>
           <Grid item className={classes.sliderBlock}>
-            <Box sx={{ maxWidth: 850, flexGrow: 1, marginLeft: 5 }} >
+            <Box sx={{ maxWidth: 850, flexGrow: 1, marginLeft: fullScreenSM ? 1 : 5, marginRight: 4, textAlign: 'justify'}}>
               <Box
                 sx={{
-                  height: 220,
+                  minHeight: 220,
                   maxWidth: 850,
                   width: "100%",
                   p: 2,
@@ -126,49 +157,48 @@ function Plans() {
                 {steps[activeStep].description}
               </Box>
               <ThemeProvider theme={theme}>
-              <MobileStepper
-                className={classes.sliderBottom}
-                variant="none" /* Здесь можешь добавить вместо none - dots/progress/text */
-                steps={maxSteps}
-                position="static"
-                activeStep={activeStep}
-                nextButton={
-                  <Fab
-                    size="medium"
-                    aria-label="next"
-                    onClick={handleNext}
-                    disabled={activeStep === maxSteps - 1}
-                    className={classes.sliderButton}
-                  >
-                    {theme.direction === "rtl" ? (
-                      <KeyboardArrowLeft />
-                    ) : (
-                      <KeyboardArrowRight />
-                    )}
-                  </Fab>
-                }
-                backButton={
-                  <Fab
-                    size="medium"
-                    onClick={handleBack}
-                    disabled={activeStep === 0}
-                   
-                    aria-label="back"
-                    className={classes.sliderButton}
-                  >
-                    {theme.direction === "rtl" ? (
-                      <KeyboardArrowRight />
-                    ) : (
-                      <KeyboardArrowLeft />
-                    )}
-                  </Fab>
-                }
-              />
-               </ThemeProvider>
+                <MobileStepper
+                  className={classes.sliderBottom}
+                  variant="none" /* Здесь можешь добавить вместо none - dots/progress/text */
+                  steps={maxSteps}
+                  position="static"
+                  activeStep={activeStep}
+                  nextButton={
+                    <Fab
+                      size="medium"
+                      aria-label="next"
+                      onClick={handleNext}
+                      disabled={activeStep === maxSteps - 1}
+                      className={classes.sliderButton}
+                    >
+                      {theme.direction === "rtl" ? (
+                        <KeyboardArrowLeft />
+                      ) : (
+                        <KeyboardArrowRight />
+                      )}
+                    </Fab>
+                  }
+                  backButton={
+                    <Fab
+                      size="medium"
+                      onClick={handleBack}
+                      disabled={activeStep === 0}
+                      aria-label="back"
+                      className={classes.sliderButton}
+                    >
+                      {theme.direction === "rtl" ? (
+                        <KeyboardArrowRight />
+                      ) : (
+                        <KeyboardArrowLeft />
+                      )}
+                    </Fab>
+                  }
+                />
+              </ThemeProvider>
             </Box>
           </Grid>
-          <Grid item>
-            <FormAndButton content="Получить консультацию" />
+          <Grid item className={classes.formButton}>
+            <FormAndButton content={fullScreenSM ? "Консультация" : "Получить консультацию"} color="primary"/>
           </Grid>
         </Grid>
       </Container>

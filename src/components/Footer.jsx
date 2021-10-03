@@ -4,6 +4,10 @@ import Container from "@mui/material/Container";
 import { makeStyles } from "@mui/styles";
 import Typography from "@mui/material/Typography";
 import RegionStroy from "../images/region_stroy.png";
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,26 +21,44 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: 15,
   },
   content: {
-    paddingLeft: 50,
-    paddingRight: 50,
+    "& p": {
+      color: 'white'
+    },
   },
 
 }));
 
+const MyFooter = styled("div")(({ theme }) => ({
+  [theme.breakpoints.up("md")]: {
+    paddingLeft: 50,
+    paddingRight: 50,
+    textAlign: 'left',
+  },
+  [theme.breakpoints.down("md")]: {
+    paddingLeft: 0,
+    paddingRight: 0,
+    textAlign: 'center'
+  },
+}));
+
 export default function Footer() {
   const classes = useStyles();
+  const theme1 = useTheme();
+  const fullScreenMD = useMediaQuery(theme1.breakpoints.down("md"));
 
   return (
     <div className={classes.root}>
       <Container className={classes.container}>
+        <MyFooter>
         <Grid
           container
-          spacing={24}
+          spacing="20"
+          direction={fullScreenMD ? "column" : "row"}
           justifyContent="space-between"
-          alignItems="flex-start"
+          alignItems={fullScreenMD ? "center" : "flex-start"}
           className={classes.content}
         >
-          <Grid item xs={5}>
+          <Grid item xs={4}>
             <Typography variant="body2">
               <b> Офис продаж</b>
               <br />
@@ -51,21 +73,20 @@ export default function Footer() {
               harmony@regionstroy.ru
             </Typography>
           </Grid>
-          <Grid item xs={4}>
-              <Grid container spacing={2}>
-                  <Grid item xs={8}>
+          <Grid item xs={2}>
+            
             <Typography variant="body2">
               Застройщик
               <br />
               ООО "Регион-строй"
             </Typography>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={2}>
                 <img src={RegionStroy} width="90" alt="Логотип Регион-строй" className={classes.regionStroyLogo}/>
             </Grid>
-            </Grid>
-          </Grid>
+            
         </Grid>
+        </MyFooter>
       </Container>
     </div>
   );
