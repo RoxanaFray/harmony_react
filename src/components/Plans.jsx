@@ -11,7 +11,7 @@ import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import Fab from "@mui/material/Fab";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import useMediaQuery from '@mui/material/useMediaQuery';
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const theme = createTheme({
   palette: {
@@ -35,19 +35,23 @@ const useStyles = makeStyles((theme) => ({
   container: {
     borderRight: "1px solid white",
     borderLeft: "1px solid white",
+    paddingBottom: 100,
+    paddingTop: 100,
   },
   content: {
-    padding: 100,
+    paddingLeft: 80,
+    paddingRight: 50
   },
   sliderBlock: {
     backgroundColor: "white",
     minHeight: 370,
     borderRadius: "180px 0 0",
     width: "100%",
+    marginBottom: '20px !important'
   },
   title: {
-    paddingBottom: 20,
-    color: 'white'
+    paddingBottom: 40,
+    color: "white",
   },
   sliderBottom: {
     backgroundColor: "transparent !important",
@@ -61,25 +65,24 @@ const useStyles = makeStyles((theme) => ({
   },
   formButton: {
     "& span": {
-      color: 'white !important'
-    }
+      color: "white !important",
+    },
   },
   mobileContainer: {
     paddingLeft: "0px !important",
     paddingRight: "0px !important",
-  paddingTop: 70,
-  paddingBottom: 50
+    paddingTop: 70,
+    paddingBottom: 50,
   },
   mobileContent: {
-    width: '100%',
+    width: "100%",
     paddingLeft: 50,
     paddingRight: 25,
   },
   mobileAnchor: {
-    position: 'absolute',
-    marginTop: '-55px'
-  }
-
+    position: "absolute",
+    marginTop: "-55px",
+  },
 }));
 
 const steps = [
@@ -108,7 +111,7 @@ function Plans() {
   const theme1 = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = steps.length;
- 
+
   const fullScreenMD = useMediaQuery(theme1.breakpoints.down("md"));
   const fullScreenSM = useMediaQuery(theme1.breakpoints.down("sm"));
 
@@ -122,14 +125,19 @@ function Plans() {
 
   return (
     <div className={classes.root}>
-      <div id="plans" className={fullScreenMD ? classes.mobileAnchor : classes.anchor}></div>
+      <div
+        id="plans"
+        className={fullScreenMD ? classes.mobileAnchor : classes.anchor}
+      ></div>
 
-      <Container className={fullScreenMD ? classes.mobileContainer : classes.container}>
+      <Container
+        className={fullScreenMD ? classes.mobileContainer : classes.container}
+      >
         <Grid
           container
           direction="column"
-          alignItems={fullScreenMD ? 'center' : 'flex-end'}
-          className={fullScreenMD ? classes.mobileContent : classes.content}
+          alignItems={fullScreenMD ? "center" : "flex-end"}
+          className={fullScreenSM ? classes.mobileContent : classes.content}
           spacing={4}
         >
           <Grid item>
@@ -144,7 +152,15 @@ function Plans() {
             </Typography>
           </Grid>
           <Grid item className={classes.sliderBlock}>
-            <Box sx={{ maxWidth: 850, flexGrow: 1, marginLeft: fullScreenSM ? 1 : 5, marginRight: 4, textAlign: 'justify'}}>
+            <Box
+              sx={{
+                maxWidth: 850,
+                flexGrow: 1,
+                marginLeft: fullScreenSM ? 1 : 5,
+                marginRight: 4,
+                textAlign: "justify",
+              }}
+            >
               <Box
                 sx={{
                   minHeight: 220,
@@ -198,7 +214,10 @@ function Plans() {
             </Box>
           </Grid>
           <Grid item className={classes.formButton}>
-            <FormAndButton content={fullScreenSM ? "Консультация" : "Получить консультацию"} color="primary"/>
+            <FormAndButton
+              content={fullScreenSM ? "Консультация" : "Получить консультацию"}
+              color="primary"
+            />
           </Grid>
         </Grid>
       </Container>

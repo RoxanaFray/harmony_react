@@ -7,8 +7,8 @@ import ListItem from "@mui/material/ListItem";
 import Map from "../images/map.png";
 import FormAndButton from "./FormAndButton";
 import Typography from "@mui/material/Typography";
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,9 +21,12 @@ const useStyles = makeStyles((theme) => ({
   container: {
     borderRight: "1px solid white",
     borderLeft: "1px solid white",
+    paddingTop: 100,
+    paddingBottom: 100
   },
   content: {
-    padding: 100,
+    paddingLeft: 50,
+    paddingRight: 50
   },
   title: {
     color: "#1f2e58",
@@ -42,26 +45,26 @@ const useStyles = makeStyles((theme) => ({
   mobileContainer: {
     paddingLeft: "0px !important",
     paddingRight: "0px !important",
-    paddingBottom: 70,
     paddingTop: 70,
+    paddingBottom: 50,
   },
   mobileContent: {
-    width: '100%',
+    width: "100%",
     paddingLeft: 25,
     paddingRight: 25,
-    textAlign: 'justify'
+    textAlign: "justify",
   },
   mobileAnchor: {
-    position: 'absolute',
-    marginTop: '-55px'
+    position: "absolute",
+    marginTop: "-55px",
   },
   mobileList: {
-      "& > li": {
-        paddingBottom: 4,
-        color: "white",
-        justifyContent: 'center',
-      },
-  }
+    "& > li": {
+      paddingBottom: 4,
+      color: "white",
+      justifyContent: "center",
+    },
+  },
 }));
 
 export default function Location() {
@@ -72,23 +75,28 @@ export default function Location() {
 
   return (
     <div className={classes.root}>
-      <div id="location" className={fullScreenMD ? classes.mobileAnchor : classes.anchor}></div>
+      <div
+        id="location"
+        className={fullScreenMD ? classes.mobileAnchor : classes.anchor}
+      ></div>
 
-      <Container className={fullScreenMD ? classes.mobileContainer : classes.container}>
+      <Container
+        className={fullScreenMD ? classes.mobileContainer : classes.container}
+      >
         <Grid
           container
           direction={fullScreenMD ? "column" : "row"}
           spacing={4}
           justifyContent="space-between"
           alignItems="center"
-          className={fullScreenSM ? classes.mobileContent : classes.content} 
+          className={fullScreenSM ? classes.mobileContent : classes.content}
         >
           <Grid item xs={4}>
             <Grid
               container
               direction="column"
-              alignItems={fullScreenMD ? 'center' : 'flex-start'}
-              spacing={1}
+              alignItems={fullScreenMD ? "center" : "flex-start"}
+              spacing={fullScreenSM ? 3 : 1}
             >
               <Grid item>
                 <Typography
@@ -102,7 +110,7 @@ export default function Location() {
               </Grid>
               <Grid item>
                 <Typography
-                  variant="body2"
+                  variant="body1"
                   gutterBottom
                   className={classes.subtitle}
                 >
@@ -111,7 +119,10 @@ export default function Location() {
                 </Typography>
               </Grid>
               <Grid item>
-                <List className={fullScreenMD ? classes.mobileList : classes.list} alignItems="center">
+                <List
+                  className={fullScreenMD ? classes.mobileList : classes.list}
+                  alignItems="center"
+                >
                   <ListItem disablePadding>Детские сады</ListItem>
                   <ListItem disablePadding>Школы</ListItem>
                   <ListItem disablePadding>Поликлиники</ListItem>

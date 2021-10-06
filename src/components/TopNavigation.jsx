@@ -5,14 +5,13 @@ import Container from "@mui/material/Container";
 import { makeStyles } from "@mui/styles";
 import Grid from "@mui/material/Grid";
 import logo from "../images/blue_logo.png";
-import facebookLogo from "../images/facebook_logo.png";
-import VkLogo from "../images/vk_logo.png";
-import InstagramLogo from "../images/instagram_logo.png";
+import facebookLogo from "../images/white_facebook_logo.png";
+import VkLogo from "../images/white_vk_logo.png";
+import InstagramLogo from "../images/white_instagram_logo.png";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { styled } from "@mui/material/styles";
 import LeftDrawer from "./LeftDrawer";
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
+
 
 const theme = createTheme({
   palette: {
@@ -31,18 +30,22 @@ const useStyles = makeStyles((theme) => ({
   menu: {
     boxShadow: "none !important",
   },
-  menuParts: {
-    paddingTop: 40,
-    paddingBottom: 20,
-  },
+  content: {
+
+    paddingTop: 25,
+    paddingBottom: 25
+  }
+,
   menuItem: {
     cursor: "pointer",
     textDecoration: "none",
     color: "white",
+    
   },
   logo: {
     position: "absolute",
-    top: 20,
+    top: 15,
+    paddingLeft: 10
   },
   social: {
     paddingRight: 5,
@@ -50,31 +53,29 @@ const useStyles = makeStyles((theme) => ({
   mobileLogo: {
     position: "absolute",
     top: 0,
-    left: '50%',
-    marginLeft: '-70px'
-  }
+    left: "50%",
+    marginLeft: "-70px",
+  },
 }));
 
 const DesktopMenu = styled("div")(({ theme }) => ({
-  [theme.breakpoints.down("md")]: {
+  [theme.breakpoints.down("lg")]: {
     display: "none !important",
   },
 }));
 
 const MobileMenu = styled("div")(({ theme }) => ({
-  [theme.breakpoints.up("md")]: {
+  [theme.breakpoints.up("lg")]: {
     display: "none !important",
   },
-  [theme.breakpoints.down("md")]: {
+  [theme.breakpoints.down("lg")]: {
     display: "block !important",
   },
 }));
 
 export default function TopNavigation() {
   const classes = useStyles();
-  const theme1 = useTheme();
-  const fullScreenMD = useMediaQuery(theme1.breakpoints.down("md"));
-  const fullScreenSM = useMediaQuery(theme1.breakpoints.down("sm"));
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -85,36 +86,32 @@ export default function TopNavigation() {
             <Toolbar>
               <Grid
                 container
+                direction="row"
                 justifyContent="space-between"
-                alignItems="flex-start"
+                alignItems="center"
+                columns={{ lg: 15 }}
+                spacing={4}
+                className={classes.content}
               >
-                <Grid item xs={5}>
-                  <Grid
-                    container
-                    justifyContent="space-between"
-                    className={classes.menuParts}
-                  >
-                    <Grid item xs={4}>
-                      <a href="#about_complex" className={classes.menuItem}>
-                        О КОМПЛЕКСЕ
-                      </a>
-                    </Grid>
-
-                    <Grid item xs={4}>
-                      <a href="#dignities" className={classes.menuItem}>
-                        ДОСТОИНСТВА
-                      </a>
-                    </Grid>
-
-                    <Grid item xs={4}>
-                      <a href="#plans" className={classes.menuItem}>
-                        ПЛАНИРОВКИ
-                      </a>
-                    </Grid>
-                  </Grid>
+                <Grid item lg={2}>
+                  <a href="#about_complex" className={classes.menuItem}>
+                    О КОМПЛЕКСЕ
+                  </a>
                 </Grid>
 
-                <Grid item xs={2}>
+                <Grid item lg={2}>
+                  <a href="#dignities" className={classes.menuItem}>
+                    ДОСТОИНСТВА
+                  </a>
+                </Grid>
+
+                <Grid item lg={2}>
+                  <a href="#plans" className={classes.menuItem}>
+                    ПЛАНИРОВКИ
+                  </a>
+                </Grid>
+
+                <Grid item lg={3}>
                   <a href="">
                     <img
                       src={logo}
@@ -125,48 +122,36 @@ export default function TopNavigation() {
                   </a>
                 </Grid>
 
-                <Grid item xs={5}>
-                  <Grid
-                    container
-                    justifyContent="space-between"
-                    className={classes.menuParts}
-                  >
-                    <Grid item xs={4}>
-                      <a href="#location" className={classes.menuItem}>
-                        РАСПОЛОЖЕНИЕ
-                      </a>
-                    </Grid>
+                <Grid item lg={2}>
+                  <a href="#location" className={classes.menuItem}>
+                    РАСПОЛОЖЕНИЕ
+                  </a>
+                </Grid>
 
-                    <Grid item xs={4}>
-                      <a href="#documents" className={classes.menuItem}>
-                        ДОКУМЕНТЫ
-                      </a>
-                    </Grid>
+                <Grid item lg={2}>
+                  <a href="#documents" className={classes.menuItem}>
+                    ДОКУМЕНТЫ
+                  </a>
+                </Grid>
 
-                    <Grid item xs={4}>
-                      <a href="" className={classes.social}>
-                        <img
-                          src={VkLogo}
-                          alt="Логотип Вконтакте"
-                          width="30"
-                        ></img>
-                      </a>
-                      <a href="" className={classes.social}>
-                        <img
-                          src={InstagramLogo}
-                          alt="Логотип Инстаграм"
-                          width="30"
-                        ></img>
-                      </a>
-                      <a href="" className={classes.social}>
-                        <img
-                          src={facebookLogo}
-                          alt="Логотип Facebook"
-                          width="30"
-                        ></img>
-                      </a>
-                    </Grid>
-                  </Grid>
+                <Grid item lg={2}>
+                  <a href="" className={classes.social}>
+                    <img src={VkLogo} alt="Логотип Вконтакте" width="30"></img>
+                  </a>
+                  <a href="" className={classes.social}>
+                    <img
+                      src={InstagramLogo}
+                      alt="Логотип Инстаграм"
+                      width="30"
+                    ></img>
+                  </a>
+                  <a href="" className={classes.social}>
+                    <img
+                      src={facebookLogo}
+                      alt="Логотип Facebook"
+                      width="30"
+                    ></img>
+                  </a>
                 </Grid>
               </Grid>
             </Toolbar>
@@ -178,20 +163,15 @@ export default function TopNavigation() {
         <AppBar position="fixed" color="primary" className={classes.mobileMenu}>
           <Container className={classes.container}>
             <Toolbar>
-            <LeftDrawer />
-             
-                
-
- 
-                  <a href="">
-                    <img
-                      src={logo}
-                      width="140"
-                      alt="Логотип"
-                      className={classes.mobileLogo}
-                    ></img>
-                  </a>
-
+              <LeftDrawer />
+              <a href="">
+                <img
+                  src={logo}
+                  width="140"
+                  alt="Логотип"
+                  className={classes.mobileLogo}
+                ></img>
+              </a>
             </Toolbar>
           </Container>
         </AppBar>

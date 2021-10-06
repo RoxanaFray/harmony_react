@@ -9,8 +9,8 @@ import Typography from "@mui/material/Typography";
 import houseImage1 from "../images/house_image1.png";
 import FormAndButton from "./FormAndButton";
 import BirdImage from "../images/bird_image.png";
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     paddingLeft: 15,
-    color: '#1f2e58'
+    color: "#1f2e58",
   },
   accordionBlock: {
     marginBottom: 25,
@@ -48,10 +48,10 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   accordeonSummary: {
-    textAlign: 'center',
-    '& div': {
-      justifyContent: 'center'
-    }
+    textAlign: "center",
+    "& div": {
+      justifyContent: "center",
+    },
   },
   accordionTitle: {
     color: "white",
@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
     width: 135,
   },
   accordionDetails: {
-    textAlign: 'center'
+    textAlign: "center",
   },
   accordionDescriptionText: {
     color: "white",
@@ -67,18 +67,18 @@ const useStyles = makeStyles((theme) => ({
   mobileContainer: {
     paddingLeft: "0px !important",
     paddingRight: "0px !important",
-    paddingBottom: 50,
     paddingTop: 70,
+    paddingBottom: 50,
   },
   mobileContent: {
-    width: '100%',
+    width: "100%",
     paddingLeft: 25,
     paddingRight: 25,
   },
   mobileAnchor: {
-    position: 'absolute',
-    marginTop: '-55px'
-  }
+    position: "absolute",
+    marginTop: "-55px",
+  },
 }));
 
 export default function Dignities() {
@@ -94,146 +94,165 @@ export default function Dignities() {
 
   return (
     <div className={classes.root}>
-      <div id="dignities" className={fullScreenMD ? classes.mobileAnchor : classes.anchor}></div>
+      <div
+        id="dignities"
+        className={fullScreenMD ? classes.mobileAnchor : classes.anchor}
+      ></div>
 
-      <Container className={fullScreenMD ? classes.mobileContainer : classes.container}>
+      <Container
+        className={fullScreenMD ? classes.mobileContainer : classes.container}
+      >
         <Grid
           container
           direction={fullScreenMD ? "column" : "row"}
           spacing={4}
           justifyContent="space-between"
           alignItems="center"
-          className={fullScreenSM ? classes.mobileContent : classes.content} 
+          className={fullScreenSM ? classes.mobileContent : classes.content}
         >
           <Grid item xs="5">
-            <Grid container direction="column" alignItems={fullScreenMD ? "center" : "flex-start"}>
-            <Grid item>
-            <Typography
-              variant="h6"
-              gutterBottom
-              component="div"
-              className={classes.title}
-              align={fullScreenMD ? "center" : "left"}
+            <Grid
+              container
+              direction="column"
+              alignItems={fullScreenMD ? "center" : "flex-start"}
+              spacing={fullScreenSM ? 2 : 0}
             >
-              ДОСТОИНСТВА
-            </Typography>
-            </Grid>
-            <Grid item>
-            <div className={classes.accordionBlock}>
-              <Accordion
-                expanded={expanded === "panel1"}
-                onChange={handleChange("panel1")}
-                className={classes.accordion}
-                disableGutters={true}
-              >
-                
-                <AccordionSummary
-                  aria-controls="panel1bh-content"
-                  id="panel1bh-header"
-                  className={fullScreenMD ? classes.accordeonSummary : '' }
+              <Grid item>
+                <Typography
+                  variant="h6"
+                  gutterBottom
+                  component="div"
+                  className={classes.title}
+                  align={fullScreenMD ? "center" : "left"}
                 >
-                  <Typography
-                    variant="subtitle1"
-                    className={classes.accordionTitle}
+                  ДОСТОИНСТВА
+                </Typography>
+              </Grid>
+              <Grid item>
+                <div className={classes.accordionBlock}>
+                  <Accordion
+                    expanded={expanded === "panel1"}
+                    onChange={handleChange("panel1")}
+                    className={classes.accordion}
+                    disableGutters={true}
                   >
-                    Архитектура
-                  </Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <Grid container direction={fullScreenMD ? "column" : "row"} className={fullScreenMD ? classes.accordionDetails : '' }>
-                    <Grid item xs="4">
-                      <img src={BirdImage} alt="Изображение" width="90" />
-                    </Grid>
-                    <Grid item xs="8">
+                    <AccordionSummary
+                      aria-controls="panel1bh-content"
+                      id="panel1bh-header"
+                      className={fullScreenMD ? classes.accordeonSummary : ""}
+                    >
                       <Typography
-                        variant="body2"
-                        className={classes.accordionDescriptionText}
+                        variant="subtitle1"
+                        className={classes.accordionTitle}
                       >
-                        На территории комплекса мы создаём атмосферу,
-                        вдохновляющую на общение, воспитание детей и здоровый
-                        отдых.
+                        Архитектура
                       </Typography>
-                    </Grid>
-                  </Grid>
-                </AccordionDetails>
-              </Accordion>
-              <Accordion
-                expanded={expanded === "panel2"}
-                onChange={handleChange("panel2")}
-                className={classes.accordion}
-              >
-                <AccordionSummary
-                  aria-controls="panel2bh-content"
-                  id="panel2bh-header"
-                  className={fullScreenMD ? classes.accordeonSummary : '' }
-
-                >
-                  <Typography
-                    variant="subtitle1"
-                    className={classes.accordionTitle}
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      <Grid
+                        container
+                        direction={fullScreenMD ? "column" : "row"}
+                        className={fullScreenMD ? classes.accordionDetails : ""}
+                      >
+                        <Grid item xs="4">
+                          <img src={BirdImage} alt="Изображение" width="90" />
+                        </Grid>
+                        <Grid item xs="8">
+                          <Typography
+                            variant="body2"
+                            className={classes.accordionDescriptionText}
+                          >
+                            На территории комплекса мы создаём атмосферу,
+                            вдохновляющую на общение, воспитание детей и
+                            здоровый отдых.
+                          </Typography>
+                        </Grid>
+                      </Grid>
+                    </AccordionDetails>
+                  </Accordion>
+                  <Accordion
+                    expanded={expanded === "panel2"}
+                    onChange={handleChange("panel2")}
+                    className={classes.accordion}
                   >
-                    Инфраструктура
-                  </Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                <Grid container direction={fullScreenMD ? "column" : "row"} className={fullScreenMD ? classes.accordionDetails : '' }>
-                    <Grid item xs="4">
-                      <img src={BirdImage} alt="Изображение" width="90" />
-                    </Grid>
-                    <Grid item xs="8">
+                    <AccordionSummary
+                      aria-controls="panel2bh-content"
+                      id="panel2bh-header"
+                      className={fullScreenMD ? classes.accordeonSummary : ""}
+                    >
                       <Typography
-                        variant="body2"
-                        className={classes.accordionDescriptionText}
+                        variant="subtitle1"
+                        className={classes.accordionTitle}
                       >
-                        На территории комплекса мы создаём атмосферу,
-                        вдохновляющую на общение, воспитание детей и здоровый
-                        отдых.
+                        Инфраструктура
                       </Typography>
-                    </Grid>
-                  </Grid>
-                </AccordionDetails>
-              </Accordion>
-              <Accordion
-                expanded={expanded === "panel3"}
-                onChange={handleChange("panel3")}
-                className={classes.accordion}
-              >
-                <AccordionSummary
-                  aria-controls="panel3bh-content"
-                  id="panel3bh-header"
-                  className={fullScreenMD ? classes.accordeonSummary : '' }
-
-                >
-                  <Typography
-                    variant="subtitle1"
-                    className={classes.accordionTitle}
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      <Grid
+                        container
+                        direction={fullScreenMD ? "column" : "row"}
+                        className={fullScreenMD ? classes.accordionDetails : ""}
+                      >
+                        <Grid item xs="4">
+                          <img src={BirdImage} alt="Изображение" width="90" />
+                        </Grid>
+                        <Grid item xs="8">
+                          <Typography
+                            variant="body2"
+                            className={classes.accordionDescriptionText}
+                          >
+                            На территории комплекса мы создаём атмосферу,
+                            вдохновляющую на общение, воспитание детей и
+                            здоровый отдых.
+                          </Typography>
+                        </Grid>
+                      </Grid>
+                    </AccordionDetails>
+                  </Accordion>
+                  <Accordion
+                    expanded={expanded === "panel3"}
+                    onChange={handleChange("panel3")}
+                    className={classes.accordion}
                   >
-                    Парковка
-                  </Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                <Grid container direction={fullScreenMD ? "column" : "row"} className={fullScreenMD ? classes.accordionDetails : '' }>
-                    <Grid item xs="4">
-                      <img src={BirdImage} alt="Изображение" width="90" />
-                    </Grid>
-                    <Grid item xs="8">
+                    <AccordionSummary
+                      aria-controls="panel3bh-content"
+                      id="panel3bh-header"
+                      className={fullScreenMD ? classes.accordeonSummary : ""}
+                    >
                       <Typography
-                        variant="body2"
-                        className={classes.accordionDescriptionText}
+                        variant="subtitle1"
+                        className={classes.accordionTitle}
                       >
-                        На территории комплекса мы создаём атмосферу,
-                        вдохновляющую на общение, воспитание детей и здоровый
-                        отдых.
+                        Парковка
                       </Typography>
-                    </Grid>
-                  </Grid>
-                </AccordionDetails>
-              </Accordion>
-            </div>
-            </Grid>
-            <Grid item>
-            <FormAndButton content="Узнать больше" color="secondary" />
-            </Grid>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      <Grid
+                        container
+                        direction={fullScreenMD ? "column" : "row"}
+                        className={fullScreenMD ? classes.accordionDetails : ""}
+                      >
+                        <Grid item xs="4">
+                          <img src={BirdImage} alt="Изображение" width="90" />
+                        </Grid>
+                        <Grid item xs="8">
+                          <Typography
+                            variant="body2"
+                            className={classes.accordionDescriptionText}
+                          >
+                            На территории комплекса мы создаём атмосферу,
+                            вдохновляющую на общение, воспитание детей и
+                            здоровый отдых.
+                          </Typography>
+                        </Grid>
+                      </Grid>
+                    </AccordionDetails>
+                  </Accordion>
+                </div>
+              </Grid>
+              <Grid item>
+                <FormAndButton content="Узнать больше" color="secondary" />
+              </Grid>
             </Grid>
           </Grid>
           <Grid item xs="7">

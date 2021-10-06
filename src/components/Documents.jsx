@@ -15,12 +15,12 @@ import BlueBirds from "../images/blue_birds.png";
 import FeedbackImage from "../images/pink_background.png";
 import Fab from "@mui/material/Fab";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: "white",
+    
   },
   anchor: {
     position: "absolute",
@@ -29,13 +29,15 @@ const useStyles = makeStyles((theme) => ({
   container: {
     borderRight: "1px solid #1f2e58",
     borderLeft: "1px solid #1f2e58",
+    paddingTop: 100,
+    paddingBottom: 100
   },
   content: {
-    padding: 100,
+    paddingLeft: 50,
+    paddingRight: 50
   },
   title: {
     color: "#1f2e58",
-    textAlign: 'center'
   },
   button: {
     color: "white !important",
@@ -45,11 +47,15 @@ const useStyles = makeStyles((theme) => ({
   },
   birds: {
     position: "absolute",
-    left: "40%",
-    marginTop: 200,
+    left: "35%",
+    marginTop: 100,
+    zIndex: 1
   },
   pdfIcon: {
     color: "#1f2e58",
+  },
+  feedback: {
+    zIndex: 2
   },
   itemText: {
     color: "#1f2e58",
@@ -57,19 +63,19 @@ const useStyles = makeStyles((theme) => ({
   mobileContainer: {
     paddingLeft: "0px !important",
     paddingRight: "0px !important",
-    paddingBottom: 70,
     paddingTop: 70,
+    paddingBottom: 50,
   },
   mobileContent: {
-    width: '100%',
+    width: "100%",
     paddingLeft: 25,
     paddingRight: 25,
-    textAlign: 'justify'
+    textAlign: "justify",
   },
   mobileAnchor: {
-    position: 'absolute',
-    marginTop: '-55px'
-  }
+    position: "absolute",
+    marginTop: "-55px",
+  },
 }));
 
 const theme = createTheme({
@@ -135,24 +141,32 @@ export default function Documents() {
 
   return (
     <div className={classes.root}>
-      <div id="documents" className={fullScreenMD ? classes.mobileAnchor : classes.anchor}></div>
+      <div
+        id="documents"
+        className={fullScreenMD ? classes.mobileAnchor : classes.anchor}
+      ></div>
 
-      <Container className={fullScreenMD ? classes.mobileContainer : classes.container}>
-      {fullScreenMD ? <div/> :
-        <img
-          src={BlueBirds}
-          alt="Птички на фоне"
-          width="40%"
-          className={classes.birds}
-        ></img>}
+      <Container
+        className={fullScreenMD ? classes.mobileContainer : classes.container}
+      >
+        {fullScreenMD ? (
+          <div />
+        ) : (
+          <img
+            src={BlueBirds}
+            alt="Птички на фоне"
+            width="50%"
+            className={classes.birds}
+          ></img>
+        )}
 
-<Grid
+        <Grid
           container
           direction={fullScreenMD ? "column" : "row"}
           spacing={4}
           justifyContent="space-between"
           alignItems="center"
-          className={fullScreenSM ? classes.mobileContent : classes.content} 
+          className={fullScreenSM ? classes.mobileContent : classes.content}
         >
           <Grid item xs={6} className={classes.documents}>
             <Typography
@@ -160,11 +174,12 @@ export default function Documents() {
               gutterBottom
               component="div"
               className={classes.title}
+              textAlign={fullScreenMD ? 'center' : 'left'}
             >
               ДОКУМЕНТЫ
             </Typography>
             <List
-              sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
+              sx={{ width: "100%", maxWidth: fullScreenSM ? 360 : 800, bgcolor: "background.paper" }}
               component="nav"
             >
               <ListItemButton
@@ -191,6 +206,19 @@ export default function Documents() {
                 </ListItemIcon>
                 <ListItemText
                   primary="Проектная декларация"
+                  className={classes.itemText}
+                />
+              </ListItemButton>
+              <ListItemButton
+                component="a"
+                href="https://xn----7sbfcciddltb2cgv9bq4o.xn--p1ai/"
+                target="_blank"
+              >
+                <ListItemIcon>
+                  <PictureAsPdfIcon className={classes.pdfIcon} />
+                </ListItemIcon>
+                <ListItemText
+                  primary="Разрешение на строительство Литер 2"
                   className={classes.itemText}
                 />
               </ListItemButton>

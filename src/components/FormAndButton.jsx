@@ -5,16 +5,13 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { makeStyles } from "@mui/styles";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Logo from "../images/logo2.png";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import Checkbox from "@mui/material/Checkbox";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   palette: {
@@ -54,12 +51,20 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: 20,
     paddingRight: 20,
   },
+  mobileTextfield: {
+    width: 240
+  },
+  mobileDialogContent: {
+    paddingTop: '40%'
+  }
 }));
-
 
 export default function FormAndButton(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+
+  const theme1 = useTheme();
+  const fullScreenSM = useMediaQuery(theme1.breakpoints.down("sm"));
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -88,7 +93,7 @@ export default function FormAndButton(props) {
           </Typography>
         </Fab>
       </ThemeProvider>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog open={open} onClose={handleClose} fullScreen={fullScreenSM ? true : false}>
         <IconButton
           edge="false"
           color="inherit"
@@ -107,7 +112,7 @@ export default function FormAndButton(props) {
           direction="column"
           alignItems="center"
           spacing={1}
-          className={classes.dialogContent}
+          className={fullScreenSM ? classes.mobileDialogContent : classes.dialogContent}
         >
           <Grid item>
             <img src={Logo} width="80" alt="Логотип" />
@@ -118,7 +123,7 @@ export default function FormAndButton(props) {
                 id="outlined-basic"
                 label="Имя"
                 variant="standard"
-                className={classes.textfield}
+                className={fullScreenSM ? classes.mobileTextfield : classes.textfield}
                 color="secondary"
               />
             </Grid>
@@ -127,7 +132,7 @@ export default function FormAndButton(props) {
                 id="outlined-basic"
                 label="Номер телефона"
                 variant="standard"
-                className={classes.textfield}
+                className={fullScreenSM ? classes.mobileTextfield : classes.textfield}
                 color="secondary"
               />
             </Grid>

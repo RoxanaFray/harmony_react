@@ -13,8 +13,8 @@ import DomainOutlinedIcon from "@mui/icons-material/DomainOutlined";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import StarRateOutlinedIcon from '@mui/icons-material/StarRateOutlined';
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import StarRateOutlinedIcon from "@mui/icons-material/StarRateOutlined";
 
 const theme = createTheme({
   palette: {
