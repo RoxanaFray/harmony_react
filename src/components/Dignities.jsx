@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
       content: "none !important",
     },
   },
-  accordeonSummary: {
+  accordionSummary: {
     textAlign: "center",
     "& div": {
       justifyContent: "center",
@@ -57,6 +57,12 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     borderBottom: "1px solid white",
     width: 135,
+  },
+  plus: {
+      position: 'absolute',
+      bottom: 5,
+      left: 158,
+      color: 'white',
   },
   accordionDetails: {
     textAlign: "center",
@@ -79,6 +85,21 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     marginTop: "-55px",
   },
+  openAccordion: {
+    boxShadow: "none !important",
+    border: "none !important",
+    backgroundColor: "transparent !important",
+    content: "none",
+    "&:before": {
+      content: "none !important",
+    },
+    '& h6': {
+      width: '90%'
+    },
+    '& div:nth-child(2)': {
+      left: '90%',
+    }
+  }
 }));
 
 export default function Dignities() {
@@ -133,20 +154,25 @@ export default function Dignities() {
                   <Accordion
                     expanded={expanded === "panel1"}
                     onChange={handleChange("panel1")}
-                    className={classes.accordion}
+                    className={expanded === "panel1" ? classes.openAccordion : classes.accordion}
                     disableGutters={true}
                   >
                     <AccordionSummary
                       aria-controls="panel1bh-content"
                       id="panel1bh-header"
-                      className={fullScreenMD ? classes.accordeonSummary : ""}
+                      className={fullScreenMD ? classes.accordionSummary : ""}
                     >
                       <Typography
                         variant="subtitle1"
                         className={classes.accordionTitle}
                       >
                         Архитектура
-                      </Typography>
+                      </Typography> 
+                      <div className={classes.plus}>
+                      {fullScreenMD ? '' : '+'}
+                      
+                      </div>
+                      
                     </AccordionSummary>
                     <AccordionDetails>
                       <Grid
@@ -173,12 +199,13 @@ export default function Dignities() {
                   <Accordion
                     expanded={expanded === "panel2"}
                     onChange={handleChange("panel2")}
-                    className={classes.accordion}
+                    className={expanded === "panel2" ? classes.openAccordion : classes.accordion}
+                    disableGutters={true}
                   >
                     <AccordionSummary
                       aria-controls="panel2bh-content"
                       id="panel2bh-header"
-                      className={fullScreenMD ? classes.accordeonSummary : ""}
+                      className={fullScreenMD ? classes.accordionSummary : ""}
                     >
                       <Typography
                         variant="subtitle1"
@@ -186,6 +213,9 @@ export default function Dignities() {
                       >
                         Инфраструктура
                       </Typography>
+                      <div className={classes.plus}>
+                      {fullScreenMD ? '' : '+'}
+                      </div>
                     </AccordionSummary>
                     <AccordionDetails>
                       <Grid
@@ -212,12 +242,13 @@ export default function Dignities() {
                   <Accordion
                     expanded={expanded === "panel3"}
                     onChange={handleChange("panel3")}
-                    className={classes.accordion}
+                    className={expanded === "panel3" ? classes.openAccordion : classes.accordion}
+                    disableGutters={true}
                   >
                     <AccordionSummary
                       aria-controls="panel3bh-content"
                       id="panel3bh-header"
-                      className={fullScreenMD ? classes.accordeonSummary : ""}
+                      className={fullScreenMD ? classes.accordionSummary : ""}
                     >
                       <Typography
                         variant="subtitle1"
@@ -225,6 +256,9 @@ export default function Dignities() {
                       >
                         Парковка
                       </Typography>
+                      <div className={classes.plus}>
+                      {fullScreenMD ? '' : '+'}
+                      </div>
                     </AccordionSummary>
                     <AccordionDetails>
                       <Grid

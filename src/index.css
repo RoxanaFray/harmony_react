@@ -14,5 +14,10 @@ code {
     monospace;
 }
 
+@media (min-width: 1200px) {
+.css-1qsxih2 {
+    max-width: 1300px !important
+}
+}
 
 

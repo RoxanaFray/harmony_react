@@ -14,13 +14,13 @@ import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import BlueBirds from "../images/blue_birds.png";
 import FeedbackImage from "../images/pink_background.png";
 import Fab from "@mui/material/Fab";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
+import Button from '@mui/material/Button';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    
   },
   anchor: {
     position: "absolute",
@@ -39,12 +39,24 @@ const useStyles = makeStyles((theme) => ({
   title: {
     color: "#1f2e58",
   },
-  button: {
-    color: "white !important",
-    boxShadow: "none !important",
-    marginLeft: "40% !important",
+  buttonBlock: {
     marginTop: "20px !important",
   },
+  button: {
+    borderBottom: '1px solid #1f2e58',
+    color: '#1f2e58',
+/*  marginLeft: "71px !important", */
+    cursor: 'pointer',
+    paddingBottom: 4,
+    display: 'inline',
+  },
+  plus: {
+    position: 'absolute',
+    bottom: '-2px',
+    /* left: 185, */
+    left: 115,
+    color: '#1f2e58',
+},
   birds: {
     position: "absolute",
     left: "35%",
@@ -78,13 +90,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#1f2e58",
-    },
-  },
-});
 
 const DocumentsArr = [
   {
@@ -122,7 +127,7 @@ export default function Documents() {
   const [open, setOpen] = React.useState(false);
   const theme1 = useTheme();
   const fullScreenMD = useMediaQuery(theme1.breakpoints.down("md"));
-  const fullScreenSM = useMediaQuery(theme.breakpoints.down("sm"));
+  const fullScreenSM = useMediaQuery(theme1.breakpoints.down("sm"));
 
   const handleClick = () => {
     setOpen(!open);
@@ -231,16 +236,20 @@ export default function Documents() {
                   })}
                 </List>
               </Collapse>
-              <ThemeProvider theme={theme}>
-                <Fab
-                  size="medium"
-                  color="primary"
-                  onClick={handleClick}
-                  className={classes.button}
-                >
-                  {open ? <ExpandLess /> : <ExpandMore />}
-                </Fab>
-              </ThemeProvider>
+           
+               <Grid container className={classes.buttonBlock} 
+               justifyContent={fullScreenMD ? 'center' : 'flex-start'}>
+                  <Typography variant='body1' className={classes.button} onClick={handleClick} >
+                     {open ? 'Свернуть' : 'Смотреть все'}
+                     <div className={classes.plus}>
+                     {open || fullScreenMD ? '' : '+'}
+                       </div>
+                   </Typography>
+                   </Grid>
+                  
+                  
+        
+        
             </List>
           </Grid>
           <Grid item xs={6} className={classes.feedback}>
