@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: 100,
     "& > li": {
       paddingLeft: "0px !important",
-      paddingBottom: 7,
+      paddingBottom: 5,
       color: "white",
     },
   },
@@ -114,20 +114,19 @@ export default function Location() {
                   gutterBottom
                   className={classes.subtitle}
                 >
-                  На территории комплекса мы создаём атмосферу, вдохновляющую на
-                  общение, воспитание детей и здоровый отдых.
+                  Жилой комплекс расположен в развитом районе города, 
+                  вблизи от основных транспортных путей – ул. Дзержинского.
+                  В непосредственной близости находятся:
                 </Typography>
               </Grid>
               <Grid item>
                 <List
                   className={fullScreenMD ? classes.mobileList : classes.list}
-                  alignItems="center"
                 >
-                  <ListItem disablePadding>Детские сады</ListItem>
-                  <ListItem disablePadding>Школы</ListItem>
-                  <ListItem disablePadding>Поликлиники</ListItem>
-                  <ListItem disablePadding>Торговый центр</ListItem>
-                  <ListItem disablePadding>Общественный транспорт</ListItem>
+                  <ListItem disablePadding>- Школы</ListItem>
+                  <ListItem disablePadding>- Детские сады</ListItem>           
+                  <ListItem disablePadding>- Продуктовые магазины и рынки</ListItem>
+                  <ListItem disablePadding>- Торговый центр «Красная площадь»</ListItem>
                 </List>
               </Grid>
               <Grid item>

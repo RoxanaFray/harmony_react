@@ -2,7 +2,7 @@ import * as React from "react";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import { makeStyles } from "@mui/styles";
-import houseImage from "../images/house_image.png";
+import houseImage from "../images/650-6.jpeg";
 import Typography from "@mui/material/Typography";
 import FormAndButton from "./FormAndButton";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -41,7 +41,8 @@ const useStyles = makeStyles((theme) => ({
   },
   numberBlock: {
     paddingTop: 20,
-    marginBottom: 30,
+    paddingBottom: 20,
+    width: '100%'
   },
   number: {
     fontSize: 48,
@@ -141,59 +142,25 @@ export default function AboutComplex() {
                   className={classes.description}
                   align={fullScreenSM ? "justify" : "left"}
                 >
-                  Виды жилого комплекса «Гармония» покорят вас невероятно. Это
-                  же несколько невысоких домов в прекрасном районе с самыми
-                  лучшими закатами и все такое.
+                   «Гармония» -  жилой комплекс где сплетается 
+                   семейное тепло с радостью, а удобное расположение 
+                   — с высоким уровнем комфорта, все грани 
+                   жизни приобретают особое значение.
                 </Typography>
               </Grid>
               <Grid item xs={2}>
                 <FormAndButton content="Оставить заявку" color="primary" />
               </Grid>
 
-              <Grid item xs={4}>
+              <Grid item xs={4} className={classes.numberBlock}>
                 <Grid
                   container
                   direction={fullScreenSM ? "column" : "row"}
                   spacing={4}
                   justifyContent="space-between"
                   alignItems="center"
-                  className={classes.numberBlock}
                 >
                   <Grid item xs={4}>
-                    <Grid container direction="column" alignItems="center">
-                      <Grid
-                        item
-                        xs={6}
-                        className={
-                          fullScreenMD ? classes.mobileNumber : classes.number
-                        }
-                      >
-                        40
-                      </Grid>
-                      <Grid item xs={6} className={classes.numberComment}>
-                        квартир <br /> разных <br /> планировок
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                  <Grid item xs={4}>
-                    {" "}
-                    <Grid container direction="column" alignItems="center">
-                      <Grid
-                        item
-                        xs={6}
-                        className={
-                          fullScreenMD ? classes.mobileNumber : classes.number
-                        }
-                      >
-                        200
-                      </Grid>
-                      <Grid item xs={6} className={classes.numberComment}>
-                        машиномест <br /> на открытой <br /> парковке
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                  <Grid item xs={4}>
-                    {" "}
                     <Grid container direction="column" alignItems="center">
                       <Grid
                         item
@@ -205,8 +172,39 @@ export default function AboutComplex() {
                         5
                       </Grid>
                       <Grid item xs={6} className={classes.numberComment}>
-                        км до центра {fullScreenSM ? <br /> : <span />}{" "}
-                        <a href="">посмотреть на карте</a>
+                      этажные <br /> дома <br /> с лифтами        
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Grid container direction="column" alignItems="center">
+                      <Grid
+                        item
+                        xs={6}
+                        className={
+                          fullScreenMD ? classes.mobileNumber : classes.number
+                        }
+                      >
+                        200
+                      </Grid>
+                      <Grid item xs={6} className={classes.numberComment}>
+                        мест на<br /> многоуровневом<br /> паркинге
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Grid container direction="column" alignItems="center">
+                      <Grid
+                        item
+                        xs={6}
+                        className={
+                          fullScreenMD ? classes.mobileNumber : classes.number
+                        }
+                      >
+                        15
+                      </Grid>
+                      <Grid item xs={6} className={classes.numberComment}>
+                      минут<br /> до центра <br /> города
                       </Grid>
                     </Grid>
                   </Grid>

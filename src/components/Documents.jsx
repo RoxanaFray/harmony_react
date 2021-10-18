@@ -7,17 +7,12 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Collapse from "@mui/material/Collapse";
-import ExpandLess from "@mui/icons-material/ExpandLess";
-import ExpandMore from "@mui/icons-material/ExpandMore";
 import Typography from "@mui/material/Typography";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import BlueBirds from "../images/blue_birds.png";
-import FeedbackImage from "../images/pink_background.png";
-import Fab from "@mui/material/Fab";
+import FeedbackImage from "../images/649-6.jpeg";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
-import Button from '@mui/material/Button';
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -60,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
   birds: {
     position: "absolute",
     left: "35%",
-    marginTop: 100,
+    marginTop: 50,
     zIndex: 1
   },
   pdfIcon: {
@@ -160,7 +155,7 @@ export default function Documents() {
           <img
             src={BlueBirds}
             alt="Птички на фоне"
-            width="50%"
+            width="40%"
             className={classes.birds}
           ></img>
         )}

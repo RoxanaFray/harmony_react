@@ -6,11 +6,13 @@ import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
-import houseImage1 from "../images/house_image1.png";
+import houseImage1 from "../images/651-6.jpeg";
 import FormAndButton from "./FormAndButton";
 import BirdImage from "../images/bird_image.png";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -59,16 +61,23 @@ const useStyles = makeStyles((theme) => ({
     width: 135,
   },
   plus: {
-      position: 'absolute',
-      bottom: 5,
-      left: 158,
-      color: 'white',
+    position: "absolute",
+    bottom: 5,
+    left: 158,
+    color: "white",
   },
   accordionDetails: {
     textAlign: "center",
   },
   accordionDescriptionText: {
     color: "white",
+  },
+  list: {
+    "& > li": {
+      paddingLeft: "0px !important",
+      paddingBottom: 5,
+      color: "white",
+    },
   },
   mobileContainer: {
     paddingLeft: "0px !important",
@@ -93,13 +102,20 @@ const useStyles = makeStyles((theme) => ({
     "&:before": {
       content: "none !important",
     },
-    '& h6': {
-      width: '90%'
+    "& h6": {
+      width: "90%",
     },
-    '& div:nth-child(2)': {
-      left: '90%',
-    }
-  }
+    "& div:nth-child(2)": {
+      left: "90%",
+    },
+  },
+  mobileList: {
+    "& > li": {
+      paddingBottom: 4,
+      color: "white",
+      justifyContent: "center",
+    },
+  },
 }));
 
 export default function Dignities() {
@@ -154,7 +170,11 @@ export default function Dignities() {
                   <Accordion
                     expanded={expanded === "panel1"}
                     onChange={handleChange("panel1")}
-                    className={expanded === "panel1" ? classes.openAccordion : classes.accordion}
+                    className={
+                      expanded === "panel1"
+                        ? classes.openAccordion
+                        : classes.accordion
+                    }
                     disableGutters={true}
                   >
                     <AccordionSummary
@@ -167,12 +187,10 @@ export default function Dignities() {
                         className={classes.accordionTitle}
                       >
                         Архитектура
-                      </Typography> 
+                      </Typography>
                       <div className={classes.plus}>
-                      {fullScreenMD ? '' : '+'}
-                      
+                        {fullScreenMD ? "" : "+"}
                       </div>
-                      
                     </AccordionSummary>
                     <AccordionDetails>
                       <Grid
@@ -188,9 +206,10 @@ export default function Dignities() {
                             variant="body2"
                             className={classes.accordionDescriptionText}
                           >
-                            На территории комплекса мы создаём атмосферу,
-                            вдохновляющую на общение, воспитание детей и
-                            здоровый отдых.
+                            Конструкция жилого комплекса «Гармония» выполнена по
+                            технологии монолит-кирпич. Наружный фасад здания
+                            также отвечает последним архитектурным тенденциям –
+                            применена технология вентилируемого фасада.
                           </Typography>
                         </Grid>
                       </Grid>
@@ -199,7 +218,11 @@ export default function Dignities() {
                   <Accordion
                     expanded={expanded === "panel2"}
                     onChange={handleChange("panel2")}
-                    className={expanded === "panel2" ? classes.openAccordion : classes.accordion}
+                    className={
+                      expanded === "panel2"
+                        ? classes.openAccordion
+                        : classes.accordion
+                    }
                     disableGutters={true}
                   >
                     <AccordionSummary
@@ -211,10 +234,10 @@ export default function Dignities() {
                         variant="subtitle1"
                         className={classes.accordionTitle}
                       >
-                        Инфраструктура
+                        О комплексе
                       </Typography>
                       <div className={classes.plus}>
-                      {fullScreenMD ? '' : '+'}
+                        {fullScreenMD ? "" : "+"}
                       </div>
                     </AccordionSummary>
                     <AccordionDetails>
@@ -231,9 +254,10 @@ export default function Dignities() {
                             variant="body2"
                             className={classes.accordionDescriptionText}
                           >
-                            На территории комплекса мы создаём атмосферу,
-                            вдохновляющую на общение, воспитание детей и
-                            здоровый отдых.
+                            Жилой комплекс оборудован бесшумными
+                            грузопассажирскими лифтами, детскими и спортивными
+                            площадками, многоуровневым паркингом, зелеными
+                            насаждениями
                           </Typography>
                         </Grid>
                       </Grid>
@@ -242,7 +266,11 @@ export default function Dignities() {
                   <Accordion
                     expanded={expanded === "panel3"}
                     onChange={handleChange("panel3")}
-                    className={expanded === "panel3" ? classes.openAccordion : classes.accordion}
+                    className={
+                      expanded === "panel3"
+                        ? classes.openAccordion
+                        : classes.accordion
+                    }
                     disableGutters={true}
                   >
                     <AccordionSummary
@@ -254,10 +282,10 @@ export default function Dignities() {
                         variant="subtitle1"
                         className={classes.accordionTitle}
                       >
-                        Парковка
+                        Инфраструктура
                       </Typography>
                       <div className={classes.plus}>
-                      {fullScreenMD ? '' : '+'}
+                        {fullScreenMD ? "" : "+"}
                       </div>
                     </AccordionSummary>
                     <AccordionDetails>
@@ -270,14 +298,29 @@ export default function Dignities() {
                           <img src={BirdImage} alt="Изображение" width="90" />
                         </Grid>
                         <Grid item xs="8">
-                          <Typography
-                            variant="body2"
-                            className={classes.accordionDescriptionText}
+                          <List
+                            className={
+                              fullScreenMD ? classes.mobileList : classes.list
+                            }
                           >
-                            На территории комплекса мы создаём атмосферу,
-                            вдохновляющую на общение, воспитание детей и
-                            здоровый отдых.
-                          </Typography>
+                            <ListItem disablePadding>
+                              - 2 среднеобразовательные школы
+                            </ListItem>
+                            <ListItem disablePadding>
+                              - 2 государственных детских сада
+                            </ListItem>
+                            <ListItem disablePadding>- 4 сквера</ListItem>
+                            <ListItem disablePadding>- Гипермаркеты</ListItem>
+                            <ListItem disablePadding>
+                              - ТЦ «Красная площадь»
+                            </ListItem>
+                            <ListItem disablePadding>
+                             - Многоуровневый паркинг
+                            </ListItem>
+                            <ListItem disablePadding>
+                             - Остановки общественного транспорта
+                            </ListItem>
+                          </List>
                         </Grid>
                       </Grid>
                     </AccordionDetails>
