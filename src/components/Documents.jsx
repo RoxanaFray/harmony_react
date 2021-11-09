@@ -40,7 +40,6 @@ const useStyles = makeStyles((theme) => ({
   button: {
     borderBottom: '1px solid #1f2e58',
     color: '#1f2e58',
-/*  marginLeft: "71px !important", */
     cursor: 'pointer',
     paddingBottom: 4,
     display: 'inline',
@@ -48,14 +47,13 @@ const useStyles = makeStyles((theme) => ({
   plus: {
     position: 'absolute',
     bottom: '-2px',
-    /* left: 185, */
     left: 115,
     color: '#1f2e58',
 },
   birds: {
     position: "absolute",
     left: "35%",
-    marginTop: 50,
+    marginTop: 25,
     zIndex: 1
   },
   pdfIcon: {
@@ -155,7 +153,7 @@ export default function Documents() {
           <img
             src={BlueBirds}
             alt="Птички на фоне"
-            width="40%"
+            width="35%"
             className={classes.birds}
           ></img>
         )}

@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
   },
   list: {
-    paddingBottom: 100,
+    paddingBottom: '20px !important',
     "& > li": {
       paddingLeft: "0px !important",
       paddingBottom: 5,

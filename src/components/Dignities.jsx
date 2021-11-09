@@ -33,7 +33,6 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: 50,
   },
   title: {
-    paddingLeft: 15,
     color: "#1f2e58",
   },
   accordionBlock: {
