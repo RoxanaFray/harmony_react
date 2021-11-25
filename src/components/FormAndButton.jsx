@@ -12,6 +12,7 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
+import NumberFormat from 'react-number-format';
 
 const theme = createTheme({
   palette: {
@@ -156,21 +157,33 @@ export default function FormAndButton(props) {
               />
             </Grid>
             <Grid item>
-              <TextField
+              <NumberFormat
                 id="outlined-basic"
-                label="Номер телефона"
-                variant="standard"
-                type="number"
                 className={
                   fullScreenSM ? classes.mobileTextfield : classes.textfield
                 }
-                color="secondary"
+                type="tel"
+                color='secondary'
+                format="+7 (###) ### ## ##"
+                size="small"
+                allowEmptyFormatting
+                mask="_"
+                customInput={TextField}
+                variant="standard"
+                label="Номер телефона"
                 onChange={(event) => {
                   setData((prevData) => {
                     prevData.phone = event.target.value;
                     return prevData;
                   });
                 }}
+              // InputProps={{
+              //   startAdornment: (
+              //     <InputAdornment position="start">
+              //       <PhoneIcon />
+              //     </InputAdornment>
+              //   ),
+              // }}
               />
             </Grid>
             <br />

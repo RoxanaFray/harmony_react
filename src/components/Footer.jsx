@@ -79,7 +79,7 @@ export default function Footer() {
             </Grid>
             <Grid item xs={2}>
               <img
-                src={}
+                src='https://picsum.photos/200/300'
                 width="90"
                 alt="Логотип Регион-строй"
                 className={classes.regionStroyLogo}

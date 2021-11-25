@@ -461,17 +461,22 @@ function Plans() {
     data.floor = plansArr[activeStep].floor;
     data.area = plansArr[activeStep].area;
 
+    const subject = "Заявка с сайта ЖК Гармония";
+    const text = `
+    Номер телефона:${data.phone}
+    Имя: ${data.name}
+    Секция: ${data.section}
+    Этаж: ${data.floor}
+    Планировка: ${data.area}
+    `;
 
     updateBackdrop(true);
-    fetch("https://92.53.96.221/myata/public_html/submit/submit-harmony.php", {
-      method: "POST",
-      body: JSON.stringify(data),
+    fetch(`https://a43vnemv5c.execute-api.eu-central-1.amazonaws.com/default/dev-company-mail?site=harmony&subject=${encodeURIComponent(subject)}&text=${encodeURIComponent(text)}`, {
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
-        // 'Content-Type': 'application/x-www-form-urlencoded',
       },
     }).then((res) => {
-      //console.log("Request complete! response:", res);
       if (res.status === 200) {
         // закрытие диалога
         // очистка полей
@@ -496,7 +501,12 @@ function Plans() {
         updateSuccessSnack(false);
       }
       updateBackdrop(false);
-    }).catch((e) => console.log(e));
+    }).catch((e) => {
+      console.log(e)
+      // сообщение об ошибке при отправке
+      updateErrorSnack(true);
+      updateSuccessSnack(false);
+    });
   }
   return (
     <div className={classes.root}>
