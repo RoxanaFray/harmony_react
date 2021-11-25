@@ -52,19 +52,26 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: 20,
   },
   mobileTextfield: {
-    width: 240
+    width: 240,
   },
   mobileDialogContent: {
-    paddingTop: '40%'
-  }
+    paddingTop: "40%",
+  },
 }));
 
 export default function FormAndButton(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
+
+
   const theme1 = useTheme();
   const fullScreenSM = useMediaQuery(theme1.breakpoints.down("sm"));
+
+  const [data, setData] = React.useState({
+    name: "",
+    phone: "",
+  });
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -73,6 +80,12 @@ export default function FormAndButton(props) {
   const handleClose = () => {
     setOpen(false);
   };
+
+  React.useEffect(() => {
+    if (props.forceClose) {
+      handleClose();
+    }
+  }, [props.forceClose])
 
   return (
     <>
@@ -93,7 +106,11 @@ export default function FormAndButton(props) {
           </Typography>
         </Fab>
       </ThemeProvider>
-      <Dialog open={open} onClose={handleClose} fullScreen={fullScreenSM ? true : false}>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        fullScreen={fullScreenSM ? true : false}
+      >
         <IconButton
           edge="false"
           color="inherit"
@@ -112,7 +129,9 @@ export default function FormAndButton(props) {
           direction="column"
           alignItems="center"
           spacing={1}
-          className={fullScreenSM ? classes.mobileDialogContent : classes.dialogContent}
+          className={
+            fullScreenSM ? classes.mobileDialogContent : classes.dialogContent
+          }
         >
           <Grid item>
             <img src={Logo} width="80" alt="Логотип" />
@@ -123,8 +142,17 @@ export default function FormAndButton(props) {
                 id="outlined-basic"
                 label="Имя"
                 variant="standard"
-                className={fullScreenSM ? classes.mobileTextfield : classes.textfield}
+                type="text"
+                className={
+                  fullScreenSM ? classes.mobileTextfield : classes.textfield
+                }
                 color="secondary"
+                onChange={(event) => {
+                  setData((prevData) => {
+                    prevData.name = event.target.value;
+                    return prevData;
+                  });
+                }}
               />
             </Grid>
             <Grid item>
@@ -132,8 +160,17 @@ export default function FormAndButton(props) {
                 id="outlined-basic"
                 label="Номер телефона"
                 variant="standard"
-                className={fullScreenSM ? classes.mobileTextfield : classes.textfield}
+                type="number"
+                className={
+                  fullScreenSM ? classes.mobileTextfield : classes.textfield
+                }
                 color="secondary"
+                onChange={(event) => {
+                  setData((prevData) => {
+                    prevData.phone = event.target.value;
+                    return prevData;
+                  });
+                }}
               />
             </Grid>
             <br />
@@ -145,6 +182,9 @@ export default function FormAndButton(props) {
                 color="secondary"
                 aria-label="add"
                 className={classes.sendButton}
+                onClick={() => {
+                  props.onSendBtnClicked(data);
+                }}
               >
                 <Typography
                   variant="subtitle2"

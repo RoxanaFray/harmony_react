@@ -12,21 +12,41 @@ import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import Fab from "@mui/material/Fab";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
+import MuiAlert from "@mui/material/Alert";
+import Snackbar from "@mui/material/Snackbar";
 import Stack from "@mui/material/Stack";
-import s1a3521 from "../images/plans/1-section/2-5-floor/section-1-floor-2-5-1r-35,21.png";
-import s1a3536 from "../images/plans/1-section/2-5-floor/section-1-floor-2-5-1r-35,36.png";
-import s1a3541 from "../images/plans/1-section/2-5-floor/section-1-floor-2-5-1r-35,41.png";
-import s1a3660 from "../images/plans/1-section/2-5-floor/section-1-floor-2-5-1r-36,60.png";
-import s1a3682 from "../images/plans/1-section/2-5-floor/section-1-floor-2-5-1r-36,82.png";
-import s1a4288 from "../images/plans/1-section/2-5-floor/section-1-floor-2-5-2r-42,88.png";
-import s1a4912 from "../images/plans/1-section/2-5-floor/section-1-floor-2-5-2r-49,12.png";
-import s1a5178 from "../images/plans/1-section/2-5-floor/section-1-floor-2-5-2r-51,78.png";
-import s1a5847 from "../images/plans/1-section/2-5-floor/section-1-floor-2-5-2r-58,47.png";
-import s2a3675 from "../images/plans/2-section/2-5-floor/section-2-floor-2-5-1r-36,75.png";
-import s2a3681 from "../images/plans/2-section/2-5-floor/section-2-floor-2-5-1r-36,81.png";
-import s2a3683 from "../images/plans/2-section/2-5-floor/section-2-floor-2-5-1r-36,83.png";
-import s2a5458 from "../images/plans/2-section/2-5-floor/section-2-floor-2-5-2r-54,58.png";
-import s2a5459 from "../images/plans/2-section/2-5-floor/section-2-floor-2-5-2r-54,59.png";
+import s1f1a2584 from "../images/plans/1-section/1-floor/section-1-floor-1-1r-25,84.png";
+import s1f1a3521 from "../images/plans/1-section/1-floor/section-1-floor-1-1r-35,21.png";
+import s1f1a3536 from "../images/plans/1-section/1-floor/section-1-floor-1-1r-35,36.png";
+import s1f1a3541 from "../images/plans/1-section/1-floor/section-1-floor-1-1r-35,41.png";
+import s1f1a3787 from "../images/plans/1-section/1-floor/section-1-floor-1-1r-37,87.png";
+import s1f1a4447 from "../images/plans/1-section/1-floor/section-1-floor-1-2r-44,47.png";
+import s1f1a4912 from "../images/plans/1-section/1-floor/section-1-floor-1-2r-49,12.png";
+import s1f1a5001 from "../images/plans/1-section/1-floor/section-1-floor-1-2r-50,01.png";
+import s1f1a5178 from "../images/plans/1-section/1-floor/section-1-floor-1-2r-51,78.png";
+import s1f25a3521 from "../images/plans/1-section/2-5-floor/section-1-floor-2-5-1r-35,21.png";
+import s1f25a3536 from "../images/plans/1-section/2-5-floor/section-1-floor-2-5-1r-35,36.png";
+import s1f25a3541 from "../images/plans/1-section/2-5-floor/section-1-floor-2-5-1r-35,41.png";
+import s1f25a3660 from "../images/plans/1-section/2-5-floor/section-1-floor-2-5-1r-36,60.png";
+import s1f25a3682 from "../images/plans/1-section/2-5-floor/section-1-floor-2-5-1r-36,82.png";
+import s1f25a4288 from "../images/plans/1-section/2-5-floor/section-1-floor-2-5-2r-42,88.png";
+import s1f25a4912 from "../images/plans/1-section/2-5-floor/section-1-floor-2-5-2r-49,12.png";
+import s1f25a5178 from "../images/plans/1-section/2-5-floor/section-1-floor-2-5-2r-51,78.png";
+import s1f25a5847 from "../images/plans/1-section/2-5-floor/section-1-floor-2-5-2r-58,47.png";
+import s2f1a1868 from "../images/plans/2-section/1-floor/section-2-floor-1-1r-18,68.png";
+import s2f1a3681 from "../images/plans/2-section/1-floor/section-2-floor-1-1r-36,81.png";
+import s2f1a3683 from "../images/plans/2-section/1-floor/section-2-floor-1-1r-36,83.png";
+import s2f1a4470 from "../images/plans/2-section/1-floor/section-2-floor-1-2r-44,70.png";
+import s2f1a4494 from "../images/plans/2-section/1-floor/section-2-floor-1-2r-44,94.png";
+import s2f25a3675 from "../images/plans/2-section/2-5-floor/section-2-floor-2-5-1r-36,75.png";
+import s2f25a3681 from "../images/plans/2-section/2-5-floor/section-2-floor-2-5-1r-36,81.png";
+import s2f25a3683 from "../images/plans/2-section/2-5-floor/section-2-floor-2-5-1r-36,83.png";
+import s2f25a5458 from "../images/plans/2-section/2-5-floor/section-2-floor-2-5-2r-54,58.png";
+import s2f25a5459 from "../images/plans/2-section/2-5-floor/section-2-floor-2-5-2r-54,59.png";
+
+
 
 const theme = createTheme({
   palette: {
@@ -38,7 +58,9 @@ const theme = createTheme({
     },
   },
 });
-
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: "#1f2e58",
@@ -195,100 +217,214 @@ const useStyles = makeStyles((theme) => ({
 
 const plans = [
   {
-    image: s1a3521,
+    image: s1f1a2584,
+    type: "Студия",
+    floor: "1",
+    area: "25.84",
+    section: "1, 3",
+  },
+  {
+    image: s1f1a3521,
     type: "1-комнатная",
+    floor: "1",
     area: "35.21",
     section: "1, 3",
   },
   {
-    image: s1a3536,
+    image: s1f1a3536,
     type: "1-комнатная",
+    floor: "1",
     area: "35.36",
     section: "1, 3",
   },
   {
-    image: s1a3541,
+    image: s1f1a3541,
     type: "1-комнатная",
+    floor: "1",
     area: "35.41",
     section: "1, 3",
   },
   {
-    image: s1a3660,
+    image: s1f1a3787,
     type: "1-комнатная",
-    area: "36.60",
+    floor: "1",
+    area: "37.87",
     section: "1, 3",
   },
   {
-    image: s1a3682,
-    type: "1-комнатная",
-    area: "36.82",
-    section: "1, 3",
-  },
-  {
-    image: s1a4288,
+    image: s1f1a4447,
     type: "2-комнатная",
-    area: "42.88",
+    floor: "1",
+    area: "44.47",
     section: "1, 3",
   },
   {
-    image: s1a4912,
+    image: s1f1a4912,
     type: "2-комнатная",
+    floor: "1",
     area: "49.12",
     section: "1, 3",
   },
   {
-    image: s1a5178,
+    image: s1f1a5001,
     type: "2-комнатная",
+    floor: "1",
+    area: "50.01",
+    section: "1, 3",
+  },
+  {
+    image: s1f1a5178,
+    type: "2-комнатная",
+    floor: "1",
     area: "51.78",
     section: "1, 3",
   },
   {
-    image: s1a5847,
+    image: s1f25a3521,
+    type: "1-комнатная",
+    floor: "2-5",
+    area: "35.21",
+    section: "1, 3",
+  },
+  {
+    image: s1f25a3536,
+    type: "1-комнатная",
+    floor: "2-5",
+    area: "35.36",
+    section: "1, 3",
+  },
+  {
+    image: s1f25a3541,
+    type: "1-комнатная",
+    floor: "2-5",
+    area: "35.41",
+    section: "1, 3",
+  },
+  {
+    image: s1f25a3660,
+    type: "Студия",
+    floor: "2-5",
+    area: "36.60",
+    section: "1, 3",
+  },
+  {
+    image: s1f25a3682,
+    type: "1-комнатная",
+    floor: "2-5",
+    area: "36.82",
+    section: "1, 3",
+  },
+  {
+    image: s1f25a4288,
     type: "2-комнатная",
+    floor: "2-5",
+    area: "42.88",
+    section: "1, 3",
+  },
+  {
+    image: s1f25a4912,
+    type: "2-комнатная",
+    floor: "2-5",
+    area: "49.12",
+    section: "1, 3",
+  },
+  {
+    image: s1f25a5178,
+    type: "2-комнатная",
+    floor: "2-5",
+    area: "51.78",
+    section: "1, 3",
+  },
+  {
+    image: s1f25a5847,
+    type: "2-комнатная",
+    floor: "2-5",
     area: "58.47",
     section: "1, 3",
   },
   {
-    image: s2a3675,
-    type: "1-комнатная",
-    area: "36.75",
+    image: s2f1a1868,
+    type: "Студия",
+    floor: "1",
+    area: "18.68",
     section: "2",
   },
   {
-    image: s2a3681,
+    image: s2f1a3681,
     type: "1-комнатная",
+    floor: "1",
     area: "36.81",
     section: "2",
   },
   {
-    image: s2a3683,
+    image: s2f1a3683,
     type: "1-комнатная",
+    floor: "1",
     area: "36.83",
     section: "2",
   },
   {
-    image: s2a5458,
+    image: s2f1a4470,
     type: "2-комнатная",
+    floor: "1",
+    area: "44.70",
+    section: "2",
+  },
+  {
+    image: s2f1a4494,
+    type: "2-комнатная",
+    floor: "1",
+    area: "44.94",
+    section: "2",
+  },
+  {
+    image: s2f25a3675,
+    type: "1-комнатная",
+    floor: "2-5",
+    area: "36.75",
+    section: "2",
+  },
+  {
+    image: s2f25a3681,
+    type: "1-комнатная",
+    floor: "2-5",
+    area: "36.81",
+    section: "2",
+  },
+  {
+    image: s2f25a3683,
+    type: "1-комнатная",
+    floor: "2-5",
+    area: "36.83",
+    section: "2",
+  },
+  {
+    image: s2f25a5458,
+    type: "2-комнатная",
+    floor: "2-5",
     area: "54.58",
     section: "2",
   },
   {
-    image: s2a5459,
+    image: s2f25a5459,
     type: "2-комнатная",
+    floor: "2-5",
     area: "54.59",
     section: "2",
   },
 ];
 
+const allFlatTypes = plans
+  .map((elem) => elem.type)
+  .filter(function (item, pos, array) {
+    return array.indexOf(item) == pos;
+  });
+allFlatTypes.push("Все");
+
 function Plans() {
   const classes = useStyles();
   const theme1 = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
-  const maxSteps = plans.length;
-  const fullScreenLG = useMediaQuery(theme1.breakpoints.down("lg"));
-  const fullScreenMD = useMediaQuery(theme1.breakpoints.down("md"));
-  const fullScreenSM = useMediaQuery(theme1.breakpoints.down("sm"));
-
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -296,9 +432,111 @@ function Plans() {
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
+  const [backdrop, updateBackdrop] = React.useState(false);
+  const [successSnack, updateSuccessSnack] = React.useState(false);
+  const [errorSnack, updateErrorSnack] = React.useState(false);  
+  const [closeDialog, setCloseDialog] = React.useState(false);  
+  const fullScreenLG = useMediaQuery(theme1.breakpoints.down("lg"));
+  const fullScreenMD = useMediaQuery(theme1.breakpoints.down("md"));
+  const fullScreenSM = useMediaQuery(theme1.breakpoints.down("sm"));
+  const [plansArr, updatePlansArr] = React.useState(plans);
 
+  function filterPlans(param) {
+    let result = [];
+    result = plans.filter((elem) => {
+      return elem.type === param || param === "Все";
+    });
+    setActiveStep(0);
+    updatePlansArr(result);
+  }
+
+  function forceCloseDialog() {
+    setCloseDialog(true);
+    setCloseDialog(false);
+  }
+
+  function sendFlatRequest(phoneAndName) {
+    let data = {...phoneAndName};
+    data.section = plansArr[activeStep].section;
+    data.floor = plansArr[activeStep].floor;
+    data.area = plansArr[activeStep].area;
+
+
+    updateBackdrop(true);
+    fetch("https://92.53.96.221/myata/public_html/submit/submit-harmony.php", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    }).then((res) => {
+      //console.log("Request complete! response:", res);
+      if (res.status === 200) {
+        // закрытие диалога
+        // очистка полей
+
+        // сообщение об успешной отправке
+        updateSuccessSnack(true);
+        updateErrorSnack(false);
+        forceCloseDialog();
+        // setTimeout(() => {
+        //   eval(
+        //     `
+        //           ym(71943988,'reachGoal','SEND');
+        //           gtag('event','target',{'event_category':'FORM','event_action':'SEND',});
+        //           fbq('track', 'Lead');
+                
+        //           `
+        //   );
+        // }, 2000);
+      } else {
+        // сообщение об ошибке при отправке
+        updateErrorSnack(true);
+        updateSuccessSnack(false);
+      }
+      updateBackdrop(false);
+    }).catch((e) => console.log(e));
+  }
   return (
     <div className={classes.root}>
+      <Backdrop className={classes.backdrop} open={backdrop} onClick={() => {}}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
+      <Snackbar
+        open={successSnack}
+        autoHideDuration={6000}
+        onClose={() => {
+          updateSuccessSnack(false);
+        }}
+      >
+        <Alert
+          onClose={() => {
+            updateSuccessSnack(false);
+          }}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
+          Данные отправлены!
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        open={errorSnack}
+        autoHideDuration={6000}
+        onClose={() => {
+          updateErrorSnack(false);
+        }}
+      >
+        <Alert
+          onClose={() => {
+            updateErrorSnack(false);
+          }}
+          severity="error"
+          sx={{ width: "100%" }}
+        >
+          Произошла ошибка. Попробуйте снова.
+        </Alert>
+      </Snackbar>
       <div
         id="plans"
         className={fullScreenMD ? classes.mobileAnchor : classes.anchor}
@@ -335,39 +573,19 @@ function Plans() {
             }
           >
             <Stack direction={fullScreenSM ? "column" : "row"} spacing={2}>
-              <Fab
-                variant="extended"
-                size="medium"
-                color="common"
-                aria-label="all"
-              >
-                Все
-              </Fab>
-              <Fab
-                variant="extended"
-                size="medium"
-                color="common"
-                aria-label="studio"
-                onClick={() => {}}
-              >
-                Студии
-              </Fab>
-              <Fab
-                variant="extended"
-                size="medium"
-                color="common"
-                aria-label="1room"
-              >
-                1-комнатные
-              </Fab>
-              <Fab
-                variant="extended"
-                size="medium"
-                color="common"
-                aria-label="2room"
-              >
-                2-комнатные
-              </Fab>
+              {allFlatTypes.map((type) => (
+                <Fab
+                  variant="extended"
+                  size="medium"
+                  color="common"
+                  //aria-label="all"
+                  onClick={() => {
+                    filterPlans(type);
+                  }}
+                >
+                  {type}
+                </Fab>
+              ))}
             </Stack>
           </Grid>
 
@@ -414,7 +632,7 @@ function Plans() {
                       }
                     >
                       <img
-                        src={plans[activeStep].image}
+                        src={plansArr[activeStep]?.image}
                         className={classes.planImage}
                       />
                     </div>
@@ -445,7 +663,7 @@ function Plans() {
                               gutterBottom
                               component="div"
                             >
-                              {plans[activeStep].type}
+                              {plansArr[activeStep]?.type}
                             </Typography>
                           </Grid>
                           <br />
@@ -467,16 +685,16 @@ function Plans() {
                               <Grid item>
                                 {fullScreenSM ? "Площадь" : "Общая площадь"}
                               </Grid>
-                              <Grid item>{plans[activeStep].area} м²</Grid>
+                              <Grid item>{plansArr[activeStep]?.area} м²</Grid>
                             </Grid>
 
                             <Grid container justifyContent="space-between">
                               <Grid item>Секция </Grid>
-                              <Grid item>{plans[activeStep].section}</Grid>
+                              <Grid item>{plansArr[activeStep]?.section}</Grid>
                             </Grid>
 
                             <Grid container justifyContent="space-between">
-                              <Grid item>Этаж</Grid> <Grid item> 2-5</Grid>
+                              <Grid item>Этаж</Grid> <Grid item>{plansArr[activeStep]?.floor}</Grid>
                             </Grid>
                           </Grid>
                         </Grid>
@@ -489,6 +707,8 @@ function Plans() {
                               : "Узнать больше об этой квартире"
                           }
                           color="secondary"
+                          onSendBtnClicked={(data) => sendFlatRequest(data)}
+                          forceClose={closeDialog}
                         />
                       </Grid>
                     </Grid>
@@ -499,7 +719,7 @@ function Plans() {
                 <MobileStepper
                   className={classes.sliderBottom}
                   variant="none" /* Здесь можешь добавить вместо none - dots/progress/text */
-                  plans={maxSteps}
+                  steps={plansArr.length}
                   position="static"
                   activeStep={activeStep}
                   nextButton={
@@ -507,7 +727,7 @@ function Plans() {
                       size="medium"
                       aria-label="next"
                       onClick={handleNext}
-                      disabled={activeStep === maxSteps - 1}
+                      disabled={activeStep === plansArr.length - 1}
                       className={classes.sliderButton}
                     >
                       {theme.direction === "rtl" ? (
@@ -536,6 +756,7 @@ function Plans() {
               </ThemeProvider>
             </Box>
           </Grid>
+
           <Grid item className={classes.formButton}>
             <FormAndButton
               content={fullScreenSM ? "Консультация" : "Получить консультацию"}

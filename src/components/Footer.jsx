@@ -3,7 +3,6 @@ import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import { makeStyles } from "@mui/styles";
 import Typography from "@mui/material/Typography";
-import RegionStroy from "../images/region_stroy.png";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import { styled } from "@mui/material/styles";
@@ -60,8 +59,8 @@ export default function Footer() {
               <Typography variant="body2">
                 <b> Офис продаж</b>
                 <br />
-                Краснодар, Олимпийский проспект, дом 16
-                <br />С 10:00 до 19:00, ежедневно
+                  Краснодар, ул. Кореновская, дом 10
+                <br />С 9:00 до 18:00, ежедневно
               </Typography>
             </Grid>
             <Grid item xs={3}>
@@ -73,14 +72,14 @@ export default function Footer() {
             </Grid>
             <Grid item xs={2}>
               <Typography variant="body2">
-                Застройщик
+                Застройщик 
                 <br />
-                ООО "Регион-строй"
+                ООО "Гармония"
               </Typography>
             </Grid>
             <Grid item xs={2}>
               <img
-                src={RegionStroy}
+                src={}
                 width="90"
                 alt="Логотип Регион-строй"
                 className={classes.regionStroyLogo}
