@@ -77,14 +77,14 @@ export default function Footer() {
                 ООО "Гармония"
               </Typography>
             </Grid>
-            <Grid item xs={2}>
+            {/* <Grid item xs={2}>
               <img
                 src='https://picsum.photos/200/300'
                 width="90"
                 alt="Логотип Регион-строй"
                 className={classes.regionStroyLogo}
               />
-            </Grid>
+            </Grid> */}
           </Grid>
         </MyFooter>
       </Container>
