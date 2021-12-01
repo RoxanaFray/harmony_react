@@ -327,7 +327,14 @@ export default function Dignities() {
                 </div>
               </Grid>
               <Grid item>
-                <FormAndButton content="Узнать больше" color="secondary" />
+                <FormAndButton 
+                content="Узнать больше" 
+                color="secondary" 
+                data={{
+                  subject: "Заявка с сайта ЖК Гармония",
+                  text: `Секция сайта: Достоинства`
+                }}
+                />
               </Grid>
             </Grid>
           </Grid>

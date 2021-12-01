@@ -30,73 +30,20 @@ const firebaseConfig = {
   measurementId: "G-SPDP20HH61"
 };
 
-const Alert = React.forwardRef(function Alert(props, ref) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
 function App() {
-
-  
-  const [backdrop, updateBackdrop] = React.useState(false);
-  const [successSnack, updateSuccessSnack] = React.useState(false);
-  const [errorSnack, updateErrorSnack] = React.useState(false);
-
   return (
     <>
-
       <TopNavigation />
-      <AboutComplex />
+      <AboutComplex/>
       <Dignities />
-      <Plans 
-        updateSuccessSnack={updateSuccessSnack}
-        updateErrorSnack={updateErrorSnack}
-        updateBackdrop={updateBackdrop}
-      />
+      <Plans />
       <Location />
       <Documents />
       <Footer />
-
-      <Backdrop open={backdrop} onClick={() => { }}>
-        <CircularProgress color="inherit" />
-      </Backdrop>
-      <Snackbar
-        open={successSnack}
-        autoHideDuration={6000}
-        onClose={() => {
-          updateSuccessSnack(false);
-        }}
-      >
-        <Alert
-          onClose={() => {
-            updateSuccessSnack(false);
-          }}
-          severity="success"
-          sx={{ width: "100%" }}
-        >
-          Данные отправлены!
-        </Alert>
-      </Snackbar>
-      <Snackbar
-        open={errorSnack}
-        autoHideDuration={6000}
-        onClose={() => {
-          updateErrorSnack(false);
-        }}
-      >
-        <Alert
-          onClose={() => {
-            updateErrorSnack(false);
-          }}
-          severity="error"
-          sx={{ width: "100%" }}
-        >
-          Произошла ошибка. Попробуйте снова.
-        </Alert>
-      </Snackbar>
     </>
   );
 }

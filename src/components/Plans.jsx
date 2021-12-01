@@ -53,7 +53,6 @@ import firstsection2and5floor from "../images/plans/firstsection2and5floor.png";
 import secondsection2and5floor from "../images/plans/secondsection2and5floor.png";
 import thirdsection2and5floor from "../images/plans/thirdsection2and5floor.png";
 
-import { awsMail } from "../utils/requests";
 
 const theme = createTheme({
   palette: {
@@ -463,10 +462,6 @@ const allFlatTypes = plans
   });
 
 function Plans(props) {
-  const updateBackdrop = props.updateBackdrop;
-  const updateSuccessSnack = props.updateSuccessSnack;
-  const updateErrorSnack = props.updateErrorSnack;
-
   const classes = useStyles();
   const theme1 = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -482,7 +477,6 @@ function Plans(props) {
   const [section, selectSection] = React.useState(1);
   const [modal, setModal] = React.useState(false);
 
-  const [closeDialog, setCloseDialog] = React.useState(false);
   const fullScreenLG = useMediaQuery(theme1.breakpoints.down("lg"));
   const fullScreenMD = useMediaQuery(theme1.breakpoints.down("md"));
   const fullScreenSM = useMediaQuery(theme1.breakpoints.down("sm"));
@@ -495,65 +489,6 @@ function Plans(props) {
     });
     setActiveStep(0);
     updatePlansArr(result);
-  }
-
-  function forceCloseDialog() {
-    setCloseDialog(true);
-    setCloseDialog(false);
-  }
-
-  function sendFlatRequest(phoneAndName) {
-    let data = { ...phoneAndName };
-    data.section = plansArr[activeStep].section;
-    data.floor = plansArr[activeStep].floor;
-    data.area = plansArr[activeStep].area;
-
-    const subject = "Заявка с сайта ЖК Гармония";
-    const text = `
-    Номер телефона:${data.phone}
-    Имя: ${data.name}
-    Секция: ${data.section}
-    Этаж: ${data.floor}
-    Планировка: ${data.area}
-    `;
-
-    updateBackdrop(true);
-    awsMail({
-      subject: subject,
-      text: text,
-    })
-      .then((res) => {
-        if (res.status === 200) {
-          // закрытие диалога
-          // очистка полей
-
-          // сообщение об успешной отправке
-          updateSuccessSnack(true);
-          updateErrorSnack(false);
-          forceCloseDialog();
-          // setTimeout(() => {
-          //   eval(
-          //     `
-          //           ym(71943988,'reachGoal','SEND');
-          //           gtag('event','target',{'event_category':'FORM','event_action':'SEND',});
-          //           fbq('track', 'Lead');
-
-          //           `
-          //   );
-          // }, 2000);
-        } else {
-          // сообщение об ошибке при отправке
-          updateErrorSnack(true);
-          updateSuccessSnack(false);
-        }
-        updateBackdrop(false);
-      })
-      .catch((e) => {
-        console.log(e);
-        // сообщение об ошибке при отправке
-        updateErrorSnack(true);
-        updateSuccessSnack(false);
-      });
   }
   return (
     <div className={classes.root}>
@@ -762,14 +697,12 @@ function Plans(props) {
                         </Grid>
                         <Grid item className={classes.apartmentButton}>
                           <FormAndButton
-                            content={
-                              fullScreenSM
-                                ? "Узнать больше"
-                                : "Узнать больше об этой квартире"
-                            }
-                            color="secondary"
-                            onSendBtnClicked={(data) => sendFlatRequest(data)}
-                            forceClose={closeDialog}
+                            content={fullScreenSM ? "Консультация" : "Получить консультацию"}
+                            color="primary"
+                            data={{
+                              subject: "Заявка с сайта ЖК Гармония",
+                              text: `Секция: ${plansArr[activeStep]?.section}\nЭтаж: ${plansArr[activeStep]?.floor}\nПланировка: ${plansArr[activeStep]?.area}`
+                            }}
                           />
                         </Grid>
                       </Grid>
@@ -870,6 +803,10 @@ function Plans(props) {
             <FormAndButton
               content={fullScreenSM ? "Консультация" : "Получить консультацию"}
               color="primary"
+              data={{
+                subject: "Заявка с сайта ЖК Гармония",
+                text: `Секция: ${section}`
+              }}
             />
           </Grid>
         </Grid>

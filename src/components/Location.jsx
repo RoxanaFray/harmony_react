@@ -114,7 +114,7 @@ export default function Location() {
                   gutterBottom
                   className={classes.subtitle}
                 >
-                  Жилой комплекс расположен в развитом районе города, 
+                  Жилой комплекс расположен в развитом районе города,
                   вблизи от основных транспортных путей – ул. Дзержинского.
                   В непосредственной близости находятся:
                 </Typography>
@@ -124,13 +124,20 @@ export default function Location() {
                   className={fullScreenMD ? classes.mobileList : classes.list}
                 >
                   <ListItem disablePadding>- Школы</ListItem>
-                  <ListItem disablePadding>- Детские сады</ListItem>           
+                  <ListItem disablePadding>- Детские сады</ListItem>
                   <ListItem disablePadding>- Продуктовые магазины и рынки</ListItem>
                   <ListItem disablePadding>- Торговый центр «Красная площадь»</ListItem>
                 </List>
               </Grid>
               <Grid item>
-                <FormAndButton content="Узнать больше" color="secondary" />
+                <FormAndButton
+                  content="Узнать больше"
+                  color="secondary"
+                  data={{
+                    subject: "Заявка с сайта ЖК Гармония",
+                    text: `Секция сайта: Локация`
+                  }}
+                />
               </Grid>
             </Grid>
           </Grid>
