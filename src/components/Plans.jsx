@@ -12,11 +12,14 @@ import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import Fab from "@mui/material/Fab";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import Backdrop from "@mui/material/Backdrop";
-import CircularProgress from "@mui/material/CircularProgress";
-import MuiAlert from "@mui/material/Alert";
-import Snackbar from "@mui/material/Snackbar";
 import Stack from "@mui/material/Stack";
+
+import Backdrop from '@mui/material/Backdrop';
+import Modal from '@mui/material/Modal';
+import Fade from '@mui/material/Fade';
+
+
+// apartment plans 
 import s1f1a2584 from "../images/plans/1-section/1-floor/section-1-floor-1-1r-25,84.png";
 import s1f1a3521 from "../images/plans/1-section/1-floor/section-1-floor-1-1r-35,21.png";
 import s1f1a3536 from "../images/plans/1-section/1-floor/section-1-floor-1-1r-35,36.png";
@@ -45,8 +48,12 @@ import s2f25a3681 from "../images/plans/2-section/2-5-floor/section-2-floor-2-5-
 import s2f25a3683 from "../images/plans/2-section/2-5-floor/section-2-floor-2-5-1r-36,83.png";
 import s2f25a5458 from "../images/plans/2-section/2-5-floor/section-2-floor-2-5-2r-54,58.png";
 import s2f25a5459 from "../images/plans/2-section/2-5-floor/section-2-floor-2-5-2r-54,59.png";
+// section plans
+import firstsection2and5floor from "../images/plans/firstsection2and5floor.png";
+import secondsection2and5floor from "../images/plans/secondsection2and5floor.png";
+import thirdsection2and5floor from "../images/plans/thirdsection2and5floor.png";
 
-
+import { awsMail } from "../utils/requests";
 
 const theme = createTheme({
   palette: {
@@ -58,12 +65,42 @@ const theme = createTheme({
     },
   },
 });
-const Alert = React.forwardRef(function Alert(props, ref) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: "#1f2e58",
+  },
+  modalLG: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  },
+  modalMD: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  },
+  modalSM: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
   },
   anchor: {
     position: "absolute",
@@ -413,15 +450,23 @@ const plans = [
     section: "2",
   },
 ];
+const sectionPlans = {
+  1: firstsection2and5floor,
+  2: secondsection2and5floor,
+  3: thirdsection2and5floor,
+}
 
 const allFlatTypes = plans
   .map((elem) => elem.type)
   .filter(function (item, pos, array) {
     return array.indexOf(item) == pos;
   });
-allFlatTypes.push("Все");
 
-function Plans() {
+function Plans(props) {
+  const updateBackdrop = props.updateBackdrop;
+  const updateSuccessSnack = props.updateSuccessSnack;
+  const updateErrorSnack = props.updateErrorSnack;
+
   const classes = useStyles();
   const theme1 = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -432,10 +477,12 @@ function Plans() {
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
-  const [backdrop, updateBackdrop] = React.useState(false);
-  const [successSnack, updateSuccessSnack] = React.useState(false);
-  const [errorSnack, updateErrorSnack] = React.useState(false);  
-  const [closeDialog, setCloseDialog] = React.useState(false);  
+
+  const [floors, showFloors] = React.useState(false);
+  const [section, selectSection] = React.useState(1);
+  const [modal, setModal] = React.useState(false);
+
+  const [closeDialog, setCloseDialog] = React.useState(false);
   const fullScreenLG = useMediaQuery(theme1.breakpoints.down("lg"));
   const fullScreenMD = useMediaQuery(theme1.breakpoints.down("md"));
   const fullScreenSM = useMediaQuery(theme1.breakpoints.down("sm"));
@@ -444,7 +491,7 @@ function Plans() {
   function filterPlans(param) {
     let result = [];
     result = plans.filter((elem) => {
-      return elem.type === param || param === "Все";
+      return elem.type === param
     });
     setActiveStep(0);
     updatePlansArr(result);
@@ -456,7 +503,7 @@ function Plans() {
   }
 
   function sendFlatRequest(phoneAndName) {
-    let data = {...phoneAndName};
+    let data = { ...phoneAndName };
     data.section = plansArr[activeStep].section;
     data.floor = plansArr[activeStep].floor;
     data.area = plansArr[activeStep].area;
@@ -471,82 +518,71 @@ function Plans() {
     `;
 
     updateBackdrop(true);
-    fetch(`https://a43vnemv5c.execute-api.eu-central-1.amazonaws.com/default/dev-company-mail?site=harmony&subject=${encodeURIComponent(subject)}&text=${encodeURIComponent(text)}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((res) => {
-      if (res.status === 200) {
-        // закрытие диалога
-        // очистка полей
+    awsMail({
+      subject: subject,
+      text: text,
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          // закрытие диалога
+          // очистка полей
 
-        // сообщение об успешной отправке
-        updateSuccessSnack(true);
-        updateErrorSnack(false);
-        forceCloseDialog();
-        // setTimeout(() => {
-        //   eval(
-        //     `
-        //           ym(71943988,'reachGoal','SEND');
-        //           gtag('event','target',{'event_category':'FORM','event_action':'SEND',});
-        //           fbq('track', 'Lead');
-                
-        //           `
-        //   );
-        // }, 2000);
-      } else {
+          // сообщение об успешной отправке
+          updateSuccessSnack(true);
+          updateErrorSnack(false);
+          forceCloseDialog();
+          // setTimeout(() => {
+          //   eval(
+          //     `
+          //           ym(71943988,'reachGoal','SEND');
+          //           gtag('event','target',{'event_category':'FORM','event_action':'SEND',});
+          //           fbq('track', 'Lead');
+
+          //           `
+          //   );
+          // }, 2000);
+        } else {
+          // сообщение об ошибке при отправке
+          updateErrorSnack(true);
+          updateSuccessSnack(false);
+        }
+        updateBackdrop(false);
+      })
+      .catch((e) => {
+        console.log(e);
         // сообщение об ошибке при отправке
         updateErrorSnack(true);
         updateSuccessSnack(false);
-      }
-      updateBackdrop(false);
-    }).catch((e) => {
-      console.log(e)
-      // сообщение об ошибке при отправке
-      updateErrorSnack(true);
-      updateSuccessSnack(false);
-    });
+      });
   }
   return (
     <div className={classes.root}>
-      <Backdrop className={classes.backdrop} open={backdrop} onClick={() => {}}>
-        <CircularProgress color="inherit" />
-      </Backdrop>
-      <Snackbar
-        open={successSnack}
-        autoHideDuration={6000}
-        onClose={() => {
-          updateSuccessSnack(false);
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        open={modal}
+        onClose={() => setModal(false)}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
         }}
       >
-        <Alert
-          onClose={() => {
-            updateSuccessSnack(false);
-          }}
-          severity="success"
-          sx={{ width: "100%" }}
-        >
-          Данные отправлены!
-        </Alert>
-      </Snackbar>
-      <Snackbar
-        open={errorSnack}
-        autoHideDuration={6000}
-        onClose={() => {
-          updateErrorSnack(false);
-        }}
-      >
-        <Alert
-          onClose={() => {
-            updateErrorSnack(false);
-          }}
-          severity="error"
-          sx={{ width: "100%" }}
-        >
-          Произошла ошибка. Попробуйте снова.
-        </Alert>
-      </Snackbar>
+        <Fade in={modal}>
+          <Box sx={
+            fullScreenSM
+              ? classes.modalSM
+              : fullScreenLG
+                ? classes.modalLG
+                : classes.modalMD
+          }>
+            <img
+              src={sectionPlans[section]}
+              className={classes.planImage}
+            />
+          </Box>
+        </Fade>
+      </Modal>
       <div
         id="plans"
         className={fullScreenMD ? classes.mobileAnchor : classes.anchor}
@@ -591,13 +627,26 @@ function Plans() {
                   //aria-label="all"
                   onClick={() => {
                     filterPlans(type);
+                    showFloors(false);
                   }}
                 >
                   {type}
                 </Fab>
               ))}
+              <Fab
+                variant="extended"
+                size="medium"
+                color="common"
+                //aria-label="all"
+                onClick={() => {
+                  showFloors(true);
+                }}
+              >
+                План этажа
+              </Fab>
             </Stack>
           </Grid>
+
 
           <Grid
             item
@@ -605,168 +654,218 @@ function Plans() {
               fullScreenMD ? classes.sliderBlockMD : classes.sliderBlock
             }
           >
-            <Box
-              sx={{
-                maxWidth: 900,
-                flexGrow: 1,
-                marginLeft: "auto",
-                marginRight: "auto",
-                textAlign: "justify",
-              }}
-            >
+            {!floors &&
               <Box
                 sx={{
-                  minHeight: 220,
-                  maxWidth: 850,
-                  width: "100%",
-                  p: 2,
-                  marginTop: 2,
+                  maxWidth: 900,
+                  flexGrow: 1,
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                  textAlign: "justify",
                 }}
               >
-                <Grid
-                  container
-                  direction={fullScreenMD ? "column" : "row"}
-                  justifyContent="center"
-                  alignItems="center"
+                <Box
+                  sx={{
+                    minHeight: 220,
+                    maxWidth: 850,
+                    width: "100%",
+                    p: 2,
+                    marginTop: 2,
+                  }}
                 >
-                  <Grid item xs={6}>
-                    <div
-                      className={
-                        fullScreenSM
-                          ? classes.planImageBlockSM
-                          : fullScreenMD
-                          ? classes.planImageBlock
-                          : fullScreenLG
-                          ? classes.planImageBlockLG
-                          : classes.planImageBlock
-                      }
-                    >
-                      <img
-                        src={plansArr[activeStep]?.image}
-                        className={classes.planImage}
-                      />
-                    </div>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Grid
-                      container
-                      direction="column"
-                      justifyContent="center"
-                      alignItems="center"
-                    >
-                      <Grid item>
-                        <Grid
-                          container
-                          direction="column"
-                          className={
-                            fullScreenSM
-                              ? classes.planInfoSM
+                  <Grid
+                    container
+                    direction={fullScreenMD ? "column" : "row"}
+                    justifyContent="center"
+                    alignItems="center"
+                  >
+                    <Grid item xs={6}>
+                      <div
+                        className={
+                          fullScreenSM
+                            ? classes.planImageBlockSM
+                            : fullScreenMD
+                              ? classes.planImageBlock
                               : fullScreenLG
-                              ? classes.planInfoLG
-                              : classes.planInfo
-                          }
-                        >
-                          <Grid item>
-                            <Typography
-                              align="center"
-                              variant={fullScreenSM ? "h6" : "h5"}
-                              gutterBottom
-                              component="div"
-                            >
-                              {plansArr[activeStep]?.type}
-                            </Typography>
-                          </Grid>
-                          <br />
+                                ? classes.planImageBlockLG
+                                : classes.planImageBlock
+                        }
+                      >
+                        <img
+                          src={plansArr[activeStep]?.image}
+                          className={classes.planImage}
+                        />
+                      </div>
+                    </Grid>
+                    <Grid item xs={6}>
+                      <Grid
+                        container
+                        direction="column"
+                        justifyContent="center"
+                        alignItems="center"
+                      >
+                        <Grid item>
+                          <Grid
+                            container
+                            direction="column"
+                            className={
+                              fullScreenSM
+                                ? classes.planInfoSM
+                                : fullScreenLG
+                                  ? classes.planInfoLG
+                                  : classes.planInfo
+                            }
+                          >
+                            <Grid item>
+                              <Typography
+                                align="center"
+                                variant={fullScreenSM ? "h6" : "h5"}
+                                gutterBottom
+                                component="div"
+                              >
+                                {plansArr[activeStep]?.type}
+                              </Typography>
+                            </Grid>
+                            <br />
 
-                          <Grid item>
-                            <Grid
-                              container
-                              justifyContent="space-between"
-                              spacing={
-                                fullScreenSM
-                                  ? 5
-                                  : fullScreenMD
-                                  ? 10
-                                  : fullScreenLG
-                                  ? 4
-                                  : 15
-                              }
-                            >
-                              <Grid item>
-                                {fullScreenSM ? "Площадь" : "Общая площадь"}
+                            <Grid item>
+                              <Grid
+                                container
+                                justifyContent="space-between"
+                                spacing={
+                                  fullScreenSM
+                                    ? 5
+                                    : fullScreenMD
+                                      ? 10
+                                      : fullScreenLG
+                                        ? 4
+                                        : 15
+                                }
+                              >
+                                <Grid item>
+                                  {fullScreenSM ? "Площадь" : "Общая площадь"}
+                                </Grid>
+                                <Grid item>{plansArr[activeStep]?.area} м²</Grid>
                               </Grid>
-                              <Grid item>{plansArr[activeStep]?.area} м²</Grid>
-                            </Grid>
 
-                            <Grid container justifyContent="space-between">
-                              <Grid item>Секция </Grid>
-                              <Grid item>{plansArr[activeStep]?.section}</Grid>
-                            </Grid>
+                              <Grid container justifyContent="space-between">
+                                <Grid item>Секция </Grid>
+                                <Grid item>{plansArr[activeStep]?.section}</Grid>
+                              </Grid>
 
-                            <Grid container justifyContent="space-between">
-                              <Grid item>Этаж</Grid> <Grid item>{plansArr[activeStep]?.floor}</Grid>
+                              <Grid container justifyContent="space-between">
+                                <Grid item>Этаж</Grid>{" "}
+                                <Grid item>{plansArr[activeStep]?.floor}</Grid>
+                              </Grid>
                             </Grid>
                           </Grid>
                         </Grid>
-                      </Grid>
-                      <Grid item className={classes.apartmentButton}>
-                        <FormAndButton
-                          content={
-                            fullScreenSM
-                              ? "Узнать больше"
-                              : "Узнать больше об этой квартире"
-                          }
-                          color="secondary"
-                          onSendBtnClicked={(data) => sendFlatRequest(data)}
-                          forceClose={closeDialog}
-                        />
+                        <Grid item className={classes.apartmentButton}>
+                          <FormAndButton
+                            content={
+                              fullScreenSM
+                                ? "Узнать больше"
+                                : "Узнать больше об этой квартире"
+                            }
+                            color="secondary"
+                            onSendBtnClicked={(data) => sendFlatRequest(data)}
+                            forceClose={closeDialog}
+                          />
+                        </Grid>
                       </Grid>
                     </Grid>
                   </Grid>
-                </Grid>
+                </Box>
+                <ThemeProvider theme={theme}>
+                  <MobileStepper
+                    className={classes.sliderBottom}
+                    variant="none" // Здесь можешь добавить вместо none - dots/progress/text 
+                    steps={plansArr.length}
+                    position="static"
+                    activeStep={activeStep}
+                    nextButton={
+                      <Fab
+                        size="medium"
+                        aria-label="next"
+                        onClick={handleNext}
+                        disabled={activeStep === plansArr.length - 1}
+                        className={classes.sliderButton}
+                      >
+                        {theme.direction === "rtl" ? (
+                          <KeyboardArrowLeft />
+                        ) : (
+                          <KeyboardArrowRight />
+                        )}
+                      </Fab>
+                    }
+                    backButton={
+                      <Fab
+                        size="medium"
+                        onClick={handleBack}
+                        disabled={activeStep === 0}
+                        aria-label="back"
+                        className={classes.sliderButton}
+                      >
+                        {theme.direction === "rtl" ? (
+                          <KeyboardArrowRight />
+                        ) : (
+                          <KeyboardArrowLeft />
+                        )}
+                      </Fab>
+                    }
+                  />
+                </ThemeProvider>
               </Box>
-              <ThemeProvider theme={theme}>
-                <MobileStepper
-                  className={classes.sliderBottom}
-                  variant="none" /* Здесь можешь добавить вместо none - dots/progress/text */
-                  steps={plansArr.length}
-                  position="static"
-                  activeStep={activeStep}
-                  nextButton={
-                    <Fab
-                      size="medium"
-                      aria-label="next"
-                      onClick={handleNext}
-                      disabled={activeStep === plansArr.length - 1}
-                      className={classes.sliderButton}
-                    >
-                      {theme.direction === "rtl" ? (
-                        <KeyboardArrowLeft />
-                      ) : (
-                        <KeyboardArrowRight />
-                      )}
-                    </Fab>
-                  }
-                  backButton={
-                    <Fab
-                      size="medium"
-                      onClick={handleBack}
-                      disabled={activeStep === 0}
-                      aria-label="back"
-                      className={classes.sliderButton}
-                    >
-                      {theme.direction === "rtl" ? (
-                        <KeyboardArrowRight />
-                      ) : (
-                        <KeyboardArrowLeft />
-                      )}
-                    </Fab>
-                  }
-                />
-              </ThemeProvider>
-            </Box>
-          </Grid>
+            }
+            {floors &&
+              <Grid
+                item
+                className={
+                  fullScreenMD
+                    ? classes.chooseApartmentButtonsMD
+                    : classes.chooseApartmentButtons
+                }
+              >
+                <Stack direction={fullScreenSM ? "column" : "row"} spacing={2}>
+                  <Fab variant="extended" size="medium" color="common" aria-label="all"
+                    onClick={() => { showFloors(true); selectSection(1) }}
+                  >
+                    1 секция
+                  </Fab>
+                  <Fab variant="extended" size="medium" color="common" aria-label="all"
+                    onClick={() => { showFloors(true); selectSection(2) }}
+                  >
+                    2 секция
+                  </Fab>
+                  <Fab variant="extended" size="medium" color="common" aria-label="all"
+                    onClick={() => { showFloors(true); selectSection(3) }}
+                  >
+                    3 секция
+                  </Fab>
+                </Stack>
+                <Grid item xs={6}>
+                  <div
+                    className={
+                      fullScreenSM
+                        ? classes.planImageBlockSM
+                        : fullScreenMD
+                          ? classes.planImageBlock
+                          : fullScreenLG
+                            ? classes.planImageBlockLG
+                            : classes.planImageBlock
+                    }
+                  >
+                    <img
+                      src={sectionPlans[section]}
+                      className={classes.planImage}
+                      onClick={() => { setModal(section) }}
+                    />
+                  </div>
+                </Grid>
+              </Grid>
 
+            }
+          </Grid>
           <Grid item className={classes.formButton}>
             <FormAndButton
               content={fullScreenSM ? "Консультация" : "Получить консультацию"}
