@@ -19,7 +19,7 @@ import MuiAlert from "@mui/material/Alert";
 import CircularProgress from "@mui/material/CircularProgress";
 import Snackbar from "@mui/material/Snackbar";
 
-import { awsMail } from "../utils/requests";
+import { awsMail, awsHarmonyRoistat } from "../utils/requests";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -78,6 +78,7 @@ export default function FormAndButton(props) {
   const [backdrop, updateBackdrop] = React.useState(false);
   const [successSnack, updateSuccessSnack] = React.useState(false);
   const [errorSnack, updateErrorSnack] = React.useState(false);
+  const [errorSnackMessage, updateErrorSnackMessage] = React.useState("Произошла ошибка. Попробуйте снова.");
 
   const [isSending, setIsSending] = React.useState(false);
 
@@ -99,49 +100,49 @@ export default function FormAndButton(props) {
     setOpen(false);
   };
 
-  function onSendBtnClicked() {
+  async function onSendBtnClicked() {
+    if (data.name?.length <= 2 || data.phone?.length < 12) {
+      updateErrorSnackMessage("Необходимо заполнить оба поля.")
+      updateErrorSnack(true);
+      updateSuccessSnack(false);
+      return;
+    };
     updateBackdrop(true);
     setIsSending(true);
     const text = props.data.text + `\nИмя: ${data.name}\nТелефон: ${data.phone}`;
-    awsMail({
-      ...props.data,
-      text: text
-    })
-      .then((res) => {
-        if (res.status === 200) {
-          // закрытие диалога
-          // очистка полей
-
-          // сообщение об успешной отправке
-          updateSuccessSnack(true);
-          updateErrorSnack(false);
-          handleClose();
-          setTimeout(() => setIsSending(false), 500)
-          // setTimeout(() => {
-          //   eval(
-          //     `
-          //           ym(71943988,'reachGoal','SEND');
-          //           gtag('event','target',{'event_category':'FORM','event_action':'SEND',});
-          //           fbq('track', 'Lead');
-
-          //           `
-          //   );
-          // }, 2000);
-        } else {
-          // сообщение об ошибке при отправке
-          updateErrorSnack(true);
-          updateSuccessSnack(false);
-          setTimeout(() => setIsSending(false), 500)
-        }
-        updateBackdrop(false);
+    try {
+      let mailRes = await awsMail({
+        ...props.data,
+        text: text
       })
-      .catch((e) => {
-        console.log(e);
+      let roistatRes = await awsHarmonyRoistat({
+        phone: data.phone,
+        name: data.name,
+      })
+
+      if (roistatRes.status === 200 && mailRes.status === 200) {
+        updateSuccessSnack(true);
+        updateErrorSnack(false);
+        updateErrorSnackMessage("Произошла ошибка. Попробуйте снова.")
+        handleClose();
+        setTimeout(() => setIsSending(false), 500)
+      } else {
         // сообщение об ошибке при отправке
+        updateErrorSnackMessage("Произошла ошибка. Попробуйте снова.")
         updateErrorSnack(true);
         updateSuccessSnack(false);
         setTimeout(() => setIsSending(false), 500)
-      });
+      }
+      updateBackdrop(false);
+    } catch (e) {
+      console.log(e);
+      // сообщение об ошибке при отправке
+      updateErrorSnack(true);
+      updateErrorSnackMessage("Произошла ошибка. Попробуйте снова.")
+      updateSuccessSnack(false);
+      setTimeout(() => setIsSending(false), 500)
+      updateBackdrop(false);
+    }
   }
 
   return (
@@ -180,7 +181,7 @@ export default function FormAndButton(props) {
           severity="error"
           sx={{ width: "100%" }}
         >
-          Произошла ошибка. Попробуйте снова.
+          {errorSnackMessage}
         </Alert>
       </Snackbar>
       <ThemeProvider theme={theme}>
@@ -264,19 +265,13 @@ export default function FormAndButton(props) {
                 customInput={TextField}
                 variant="standard"
                 label="Номер телефона"
-                onChange={(event) => {
+                onValueChange={values => {
                   setData((prevData) => {
-                    prevData.phone = event.target.value;
+                    prevData.phone = "+7" + new String(values.floatValue);
                     return prevData;
-                  });
-                }}
-              // InputProps={{
-              //   startAdornment: (
-              //     <InputAdornment position="start">
-              //       <PhoneIcon />
-              //     </InputAdornment>
-              //   ),
-              // }}
+                  })
+                }
+                }
               />
             </Grid>
             <br />

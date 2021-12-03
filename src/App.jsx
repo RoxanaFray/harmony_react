@@ -5,40 +5,55 @@ import Plans from './components/Plans';
 import Location from './components/Location';
 import Documents from './components/Documents';
 import Footer from './components/Footer';
-
-import Backdrop from "@mui/material/Backdrop";
-import MuiAlert from "@mui/material/Alert";
-import CircularProgress from "@mui/material/CircularProgress";
-import Snackbar from "@mui/material/Snackbar";
 import * as React from "react";
 
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyDajiGob_K56bjTGypdayQ4AFGFANRc56Y",
-  authDomain: "harmony-site.firebaseapp.com",
-  projectId: "harmony-site",
-  storageBucket: "harmony-site.appspot.com",
-  messagingSenderId: "485517124381",
-  appId: "1:485517124381:web:f1a613bc859f80c2c2b7f4",
-  measurementId: "G-SPDP20HH61"
-};
+(function (w, d, s, h, id) {
+  w.roistatProjectId = id;
+  w.roistatHost = h;
+  var p = d.location.protocol == "https:" ? "https://" : "http://";
+  var u = /^.*roistat_visit=[^;]+(.*)?$/.test(d.cookie) ? "/dist/module.js" : "/api/site/1.0/" + id +
+    "/init?referrer=" + encodeURIComponent(d.location.href);
+  var js = d.createElement(s);
+  js.charset = "UTF-8";
+  js.async = 1;
+  js.src = p + h + u;
+  var js2 = d.getElementsByTagName(s)[0];
+  js2.parentNode.insertBefore(js, js2);
+})(window, document, 'script', 'cloud.roistat.com', '77a5a3c7f009f99b3b2bbd06a553736c');
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+let roistatUtmFieldsObj = {
+  utm_source: "",
+  utm_medium: "",
+  utm_campaign: "",
+  utm_content: "",
+  utm_term: "",
+}
+let roistatVisit = "";
+window.onRoistatAllModulesLoaded = () => {
+  roistatVisit = window.roistat.visit;
+  const url = new URL(window.location.href);
+
+  const utm_source = url.searchParams.get('utm_source');
+  const utm_medium = url.searchParams.get('utm_medium');
+  const utm_campaign = url.searchParams.get('utm_campaign');
+  const utm_content = url.searchParams.get('utm_content');
+  const utm_term = url.searchParams.get('utm_term');
+
+  roistatUtmFieldsObj = {
+    utm_source: utm_source,
+    utm_medium: utm_medium,
+    utm_campaign: utm_campaign,
+    utm_content: utm_content,
+    utm_term: utm_term,
+  }
+}
 
 function App() {
   return (
     <>
       <TopNavigation />
-      <AboutComplex/>
+      <AboutComplex />
       <Dignities />
       <Plans />
       <Location />
@@ -48,4 +63,11 @@ function App() {
   );
 }
 
-export default App;
+function getRoistatVisit() {
+  return roistatVisit;
+}
+function getRoistatUtmFieldsObj() {
+  return roistatUtmFieldsObj;
+}
+
+export { App, getRoistatVisit, getRoistatUtmFieldsObj }
