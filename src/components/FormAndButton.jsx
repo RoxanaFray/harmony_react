@@ -101,7 +101,7 @@ export default function FormAndButton(props) {
   };
 
   async function onSendBtnClicked() {
-    if (data.name?.length <= 2 || data.phone?.length < 12) {
+    if (data.name?.length < 2 || data.phone?.length < 12) {
       updateErrorSnackMessage("Необходимо заполнить оба поля.")
       updateErrorSnack(true);
       updateSuccessSnack(false);
@@ -111,11 +111,11 @@ export default function FormAndButton(props) {
     setIsSending(true);
     const text = props.data.text + `\nИмя: ${data.name}\nТелефон: ${data.phone}`;
     try {
-      let mailRes = await awsMail({
+      const mailRes = await awsMail({
         ...props.data,
         text: text
       })
-      let roistatRes = await awsHarmonyRoistat({
+      const roistatRes = await awsHarmonyRoistat({
         phone: data.phone,
         name: data.name,
       })

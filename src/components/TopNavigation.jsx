@@ -31,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "none !important",
   },
   content: {
-
     paddingTop: 25,
     paddingBottom: 25
   }

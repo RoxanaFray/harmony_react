@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
   anchor: {
     position: "absolute",
-    marginTop: "-100px",
+    marginTop: "-55px",
   },
   container: {
     borderRight: "1px solid white",

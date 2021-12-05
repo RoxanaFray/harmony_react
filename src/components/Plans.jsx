@@ -68,18 +68,10 @@ const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: "#1f2e58",
   },
-  modalLG: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
+  ModalBackground: {
+    backgroundColor: "rgba(0, 0, 0, 0.8)"
   },
-  modalMD: {
+  modalBlock: {
     position: 'absolute',
     top: '50%',
     left: '50%',
@@ -89,21 +81,19 @@ const useStyles = makeStyles((theme) => ({
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
+    width: "80%"
   },
-  modalSM: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
+  modalImage: {
+    maxWidth: "90%",
+    maxHeight: "100%",
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
   },
   anchor: {
     position: "absolute",
-    marginTop: "-100px",
+    marginTop: "-55px",
   },
   container: {
     borderRight: "1px solid white",
@@ -114,13 +104,6 @@ const useStyles = makeStyles((theme) => ({
   content: {
     paddingLeft: 80,
     paddingRight: 50,
-  },
-  sliderBlock: {
-    backgroundColor: "white",
-    minHeight: 370,
-    borderRadius: "180px 0 0",
-    width: "100%",
-    marginBottom: "20px !important",
   },
   sliderBlock: {
     backgroundColor: "white",
@@ -160,6 +143,32 @@ const useStyles = makeStyles((theme) => ({
       width: "100%",
       backgroundColor: "white",
       color: "#1f2e58",
+      boxShadow: "none !important",
+    },
+  },
+  chooseSectionButtons: {
+    width: "80%",
+    marginLeft: "auto",
+    marginRight: "auto", 
+    "& button": {
+      width: "100%",
+      backgroundColor: "white",
+      color: "#1f2e58",
+      border: "1px solid #1f2e58",
+      boxShadow: "none !important",
+    },
+  },
+  chooseSectionButtonsMD: {
+    paddingBottom: 20,
+    marginLeft: "auto",
+    marginRight: "auto", 
+    width: "90%",
+    paddingLeft: "0px !important",
+    "& button": {
+      width: "100%",
+      backgroundColor: "white",
+      color: "#1f2e58",
+      border: "1px solid #1f2e58",
       boxShadow: "none !important",
     },
   },
@@ -217,6 +226,34 @@ const useStyles = makeStyles((theme) => ({
   },
   apartmentButton: {
     marginTop: "35px !important",
+  },
+  floorImageBlock: {
+    width: "100%",
+    height: 400,
+    position: "relative",
+    paddingLeft: 10,
+
+  },
+  floorImageBlockLG: {
+    width: "100%",
+    height: 300,
+    position: "relative",
+    paddingLeft: 10,
+  },
+  floorImageBlockSM: {
+    width: "100%",
+    height: 250,
+    position: "relative",
+    paddingLeft: 10,
+  },
+  floorImage: {
+    maxWidth: "95%",
+    maxHeight: "90%",
+    positon: 'relative',
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginTop: 20,
+    cursor: "pointer"
   },
   sliderBottom: {
     backgroundColor: "transparent !important",
@@ -495,6 +532,7 @@ function Plans(props) {
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
+        className={classes.ModalBackground}
         open={modal}
         onClose={() => setModal(false)}
         closeAfterTransition
@@ -504,16 +542,10 @@ function Plans(props) {
         }}
       >
         <Fade in={modal}>
-          <Box sx={
-            fullScreenSM
-              ? classes.modalSM
-              : fullScreenLG
-                ? classes.modalLG
-                : classes.modalMD
-          }>
+          <Box sx={classes.modalBlock}>
             <img
               src={sectionPlans[section]}
-              className={classes.planImage}
+              className={classes.modalImage}
             />
           </Box>
         </Fade>
@@ -559,7 +591,7 @@ function Plans(props) {
                   variant="extended"
                   size="medium"
                   color="common"
-                  //aria-label="all"
+                  aria-label="flatType"
                   onClick={() => {
                     filterPlans(type);
                     showFloors(false);
@@ -572,7 +604,7 @@ function Plans(props) {
                 variant="extended"
                 size="medium"
                 color="common"
-                //aria-label="all"
+                aria-label="floorPlan"
                 onClick={() => {
                   showFloors(true);
                 }}
@@ -583,6 +615,7 @@ function Plans(props) {
           </Grid>
 
 
+          <ThemeProvider theme={theme}>
           <Grid
             item
             className={
@@ -698,7 +731,7 @@ function Plans(props) {
                         <Grid item className={classes.apartmentButton}>
                           <FormAndButton
                             content={fullScreenSM ? "Консультация" : "Получить консультацию"}
-                            color="primary"
+                            color="secondary"
                             data={{
                               subject: "Заявка с сайта ЖК Гармония",
                               text: `Секция: ${plansArr[activeStep]?.section}\nЭтаж: ${plansArr[activeStep]?.floor}\nПланировка: ${plansArr[activeStep]?.area}`
@@ -709,7 +742,6 @@ function Plans(props) {
                     </Grid>
                   </Grid>
                 </Box>
-                <ThemeProvider theme={theme}>
                   <MobileStepper
                     className={classes.sliderBottom}
                     variant="none" // Здесь можешь добавить вместо none - dots/progress/text 
@@ -747,58 +779,56 @@ function Plans(props) {
                       </Fab>
                     }
                   />
-                </ThemeProvider>
               </Box>
             }
             {floors &&
               <Grid
                 item
-                className={
-                  fullScreenMD
-                    ? classes.chooseApartmentButtonsMD
-                    : classes.chooseApartmentButtons
-                }
               >
-                <Stack direction={fullScreenSM ? "column" : "row"} spacing={2}>
-                  <Fab variant="extended" size="medium" color="common" aria-label="all"
+                <Stack direction={fullScreenSM ? "column" : "row"} spacing={2} alignItems="flex-end" className={
+                  fullScreenMD
+                    ? classes.chooseSectionButtonsMD
+                    : classes.chooseSectionButtons}>
+                  <Fab variant="extended" size="medium" color="common" aria-label="1-section"
                     onClick={() => { showFloors(true); selectSection(1) }}
                   >
                     1 секция
                   </Fab>
-                  <Fab variant="extended" size="medium" color="common" aria-label="all"
+                  <Fab variant="extended" size="medium" color="common" aria-label="2-section"
                     onClick={() => { showFloors(true); selectSection(2) }}
                   >
                     2 секция
                   </Fab>
-                  <Fab variant="extended" size="medium" color="common" aria-label="all"
+                  <Fab variant="extended" size="medium" color="common" aria-label="3-section"
                     onClick={() => { showFloors(true); selectSection(3) }}
                   >
                     3 секция
                   </Fab>
                 </Stack>
-                <Grid item xs={6}>
+                <Grid container justifyContent="center">
+                  <Grid item>
                   <div
                     className={
                       fullScreenSM
-                        ? classes.planImageBlockSM
-                        : fullScreenMD
-                          ? classes.planImageBlock
+                        ? classes.floorImageBlockSM
                           : fullScreenLG
-                            ? classes.planImageBlockLG
-                            : classes.planImageBlock
+                            ? classes.floorImageBlockLG
+                            : classes.floorImageBlock
                     }
                   >
                     <img
                       src={sectionPlans[section]}
-                      className={classes.planImage}
+                      className={classes.floorImage}
                       onClick={() => { setModal(section) }}
                     />
                   </div>
+                  </Grid>
                 </Grid>
               </Grid>
 
             }
           </Grid>
+          </ThemeProvider>
           <Grid item className={classes.formButton}>
             <FormAndButton
               content={fullScreenSM ? "Консультация" : "Получить консультацию"}
