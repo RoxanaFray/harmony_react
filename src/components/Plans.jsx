@@ -69,7 +69,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#1f2e58",
   },
   ModalBackground: {
-    backgroundColor: "rgba(0, 0, 0, 0.8)"
+    "& div": {
+      backgroundColor: "rgba(255, 255, 255, 0.9)",
+    }
   },
   modalBlock: {
     position: 'absolute',
@@ -77,7 +79,6 @@ const useStyles = makeStyles((theme) => ({
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 400,
-    bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
