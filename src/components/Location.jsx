@@ -85,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
   },
   map: {
     cursor: 'zoom-in',
-    borderRadius: "0 50px 0 0"
+    borderRadius: "0 40px 0 0"
   },
   mobileAnchor: {
     position: "absolute",
