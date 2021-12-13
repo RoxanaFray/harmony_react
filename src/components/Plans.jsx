@@ -254,7 +254,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "auto",
     marginRight: "auto",
     marginTop: 20,
-    cursor: "pointer"
+    cursor: "zoom-in"
   },
   sliderBottom: {
     backgroundColor: "transparent !important",

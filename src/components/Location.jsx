@@ -4,11 +4,16 @@ import { makeStyles } from "@mui/styles";
 import Container from "@mui/material/Container";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import Map from "../images/map.png";
+import Map from "../images/mapimage-1.png";
 import FormAndButton from "./FormAndButton";
 import Typography from "@mui/material/Typography";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
+import Backdrop from '@mui/material/Backdrop';
+import Modal from '@mui/material/Modal';
+import Fade from '@mui/material/Fade';
+import Box from "@mui/material/Box";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,6 +32,30 @@ const useStyles = makeStyles((theme) => ({
   content: {
     paddingLeft: 50,
     paddingRight: 50
+  },
+  ModalBackground: {
+    "& div": {
+      backgroundColor: "rgba(0, 0, 0, 0.8)",
+    }
+  },
+  modalBlock: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+    width: "80%"
+  },
+  modalImage: {
+    maxWidth: "90%",
+    maxHeight: "100%",
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
   },
   title: {
     color: "#1f2e58",
@@ -54,6 +83,9 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: 25,
     textAlign: "justify",
   },
+  map: {
+    cursor: 'zoom-in'
+  },
   mobileAnchor: {
     position: "absolute",
     marginTop: "-55px",
@@ -72,9 +104,32 @@ export default function Location() {
   const theme = useTheme();
   const fullScreenMD = useMediaQuery(theme.breakpoints.down("md"));
   const fullScreenSM = useMediaQuery(theme.breakpoints.down("sm"));
+  const [modal, setModal] = React.useState(false);
+
 
   return (
     <div className={classes.root}>
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className={classes.ModalBackground}
+        open={modal}
+        onClose={() => setModal(false)}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={modal}>
+          <Box sx={classes.modalBlock}>
+            <img
+              src={Map}
+              className={classes.modalImage}
+            />
+          </Box>
+        </Fade>
+      </Modal>
       <div
         id="location"
         className={fullScreenMD ? classes.mobileAnchor : classes.anchor}
@@ -91,7 +146,7 @@ export default function Location() {
           alignItems="center"
           className={fullScreenSM ? classes.mobileContent : classes.content}
         >
-          <Grid item xs={4}>
+          <Grid item xs={5}>
             <Grid
               container
               direction="column"
@@ -141,9 +196,8 @@ export default function Location() {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={8}>
-            {/*               Здесь будет реальная карта, но пока картинка */}
-            <img src={Map} alt="Карта" width="100%" />
+          <Grid item xs={6} className={classes.map}>
+            <img src={Map} alt="Карта" onClick={() => { setModal(Map) }} width="100%" />
           </Grid>
         </Grid>
       </Container>

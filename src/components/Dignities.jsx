@@ -6,7 +6,7 @@ import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
-import houseImage1 from "../images/651-6.jpeg";
+import houseImage1 from "../images/cam_02_fx.png";
 import FormAndButton from "./FormAndButton";
 import BirdImage from "../images/bird_image.png";
 import useMediaQuery from "@mui/material/useMediaQuery";

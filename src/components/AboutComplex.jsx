@@ -2,7 +2,7 @@ import * as React from "react";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import { makeStyles } from "@mui/styles";
-import houseImage from "../images/650-6.jpeg";
+import houseImage from "../images/cam_04_fx.png";
 import Typography from "@mui/material/Typography";
 import FormAndButton from "./FormAndButton";
 import useMediaQuery from "@mui/material/useMediaQuery";

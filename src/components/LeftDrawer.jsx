@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import StarRateOutlinedIcon from "@mui/icons-material/StarRateOutlined";
+import CallOutlinedIcon from '@mui/icons-material/CallOutlined';
 
 const theme = createTheme({
   palette: {
@@ -73,6 +74,11 @@ const LinkArr = [
     href: "#documents",
     title: "Документы",
     icon: <DescriptionOutlinedIcon color="secondary" />,
+  },
+  {
+    href: "#contacts",
+    title: "Контакты",
+    icon: <CallOutlinedIcon color="secondary" />,
   },
 ];
 

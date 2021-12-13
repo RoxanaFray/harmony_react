@@ -11,12 +11,14 @@ const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: "#1f2e58",
   },
-
   container: {
     borderRight: "1px solid white",
     borderLeft: "1px solid white",
     paddingBottom: 15,
     paddingTop: 15,
+  },
+  anchor: {
+    position: "absolute",
   },
   content: {
     "& p": {
@@ -45,6 +47,10 @@ export default function Footer() {
 
   return (
     <div className={classes.root}>
+      <div
+        id="contacts"
+        className={classes.anchor}
+      ></div>
       <Container className={classes.container}>
         <MyFooter>
           <Grid
