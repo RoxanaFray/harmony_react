@@ -115,6 +115,9 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: "center",
     },
   },
+  complexImage: {
+		borderRadius: "0 40px 0 0"
+	}
 }));
 
 export default function Dignities() {
@@ -343,6 +346,7 @@ export default function Dignities() {
               src={houseImage1}
               width="100%"
               alt="Изображение жилого комплекса"
+              className={classes.complexImage}
             ></img>
           </Grid>
         </Grid>

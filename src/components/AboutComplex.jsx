@@ -83,6 +83,9 @@ const useStyles = makeStyles((theme) => ({
 		position: "absolute",
 		marginTop: "-55px",
 	},
+	complexImage: {
+		borderRadius: "40px 0 0 0"
+	}
 }));
 
 export default function AboutComplex(props) {
