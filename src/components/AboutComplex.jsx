@@ -84,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
 		marginTop: "-55px",
 	},
 	complexImage: {
-		borderRadius: "40px 0 0 0"
+		borderRadius: "50px 0 0 0"
 	}
 }));
 

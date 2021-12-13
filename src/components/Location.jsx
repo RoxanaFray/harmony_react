@@ -84,7 +84,8 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "justify",
   },
   map: {
-    cursor: 'zoom-in'
+    cursor: 'zoom-in',
+    borderRadius: "0 50px 0 0"
   },
   mobileAnchor: {
     position: "absolute",
@@ -196,8 +197,8 @@ export default function Location() {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={6} className={classes.map}>
-            <img src={Map} alt="Карта" onClick={() => { setModal(Map) }} width="100%" />
+          <Grid item xs={6}>
+            <img src={Map} alt="Карта" className={classes.map} onClick={() => { setModal(Map) }} width="100%" />
           </Grid>
         </Grid>
       </Container>
