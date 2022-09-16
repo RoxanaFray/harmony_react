@@ -67,6 +67,11 @@ const useStyles = makeStyles((theme) => ({
   },
   accordionDetails: {
     textAlign: "center",
+    color: "white",
+  },
+  smallAccordionDetails: {
+    textAlign: "center",
+    color: "white",
   },
   accordionDescriptionText: {
     color: "white",
@@ -208,10 +213,13 @@ export default function Dignities() {
                             variant="body2"
                             className={classes.accordionDescriptionText}
                           >
-                            Конструкция жилого комплекса «Гармония» выполнена по
-                            технологии монолит-кирпич. Наружный фасад здания
-                            также отвечает последним архитектурным тенденциям –
-                            применена технология вентилируемого фасада.
+                            Конструкция жилого комплекса «Гармония» выполнена 
+                            по технологии монолит-кирпич. 
+                            Наружный фасад здания также отвечает 
+                            последним архитектурным тенденциям - 
+                            применена технология вентилируемого фасада, 
+                            которая способствует повышению 
+                            энергоэффективности домов.
                           </Typography>
                         </Grid>
                       </Grid>
@@ -256,10 +264,17 @@ export default function Dignities() {
                             variant="body2"
                             className={classes.accordionDescriptionText}
                           >
-                            Жилой комплекс оборудован бесшумными
-                            грузопассажирскими лифтами, детскими и спортивными
-                            площадками, многоуровневым паркингом, зелеными
-                            насаждениями
+                            Малоэтажный жилой комплекс «Гармония» 
+                            расположен в уютном районе города Краснодара. 
+                            Энка - один из самых процветающий микрорайонов, 
+                            который идеально подходит для людей, 
+                            выбирающих тишину и покой посреди ритма 
+                            жизни большого города.
+                            Сами дома оборудованы бесшумными грузопассажирскими лифтами, 
+                            зелёными насаждениями, детскими и спортивными площадками. 
+                            На территории жилого комплекса также находится
+                             многоуровневый паркинг на 200 мест, 
+                             что поможет реализовать идею «двор без машин»
                           </Typography>
                         </Grid>
                       </Grid>
@@ -294,33 +309,34 @@ export default function Dignities() {
                       <Grid
                         container
                         direction={fullScreenMD ? "column" : "row"}
-                        className={fullScreenMD ? classes.accordionDetails : ""}
+                        className={fullScreenMD ? classes.accordionDetails : classes.smallAccordionDetails}
                       >
                         <Grid item xs="4">
                           <img src={BirdImage} alt="Изображение" width="90" />
                         </Grid>
                         <Grid item xs="8">
+                        Рядом с жилым комплексом «Гармония» располагаются: 
                           <List
                             className={
                               fullScreenMD ? classes.mobileList : classes.list
                             }
                           >
                             <ListItem disablePadding>
-                              - 2 среднеобразовательные школы
+                            - 2 действующие  школы 
                             </ListItem>
                             <ListItem disablePadding>
-                              - 2 государственных детских сада
+                              - 2 государственных детских сада 
                             </ListItem>
-                            <ListItem disablePadding>- 4 сквера</ListItem>
+                            <ListItem disablePadding>- скверы и парки для прогулок во время тихих вечеров </ListItem>
                             <ListItem disablePadding>- Гипермаркеты</ListItem>
                             <ListItem disablePadding>
-                              - ТЦ «Красная площадь»
+                              - торговый центр «Красная площадь» 
                             </ListItem>
                             <ListItem disablePadding>
-                             - Многоуровневый паркинг
+                             - гипермаркеты и фитнес-центры 
                             </ListItem>
                             <ListItem disablePadding>
-                             - Остановки общественного транспорта
+                             - остановки общественного транспорта 
                             </ListItem>
                           </List>
                         </Grid>

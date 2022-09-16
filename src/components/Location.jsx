@@ -170,19 +170,16 @@ export default function Location() {
                   gutterBottom
                   className={classes.subtitle}
                 >
-                  Жилой комплекс расположен в развитом районе города,
-                  вблизи от основных транспортных путей – ул. Дзержинского.
-                  В непосредственной близости находятся:
+                 Микрорайон имени Жукова с 1993 существовал как «военный городок», дома в котором возводились турецкой компанией ENKA. Название закрепилось среди жителей Краснодара, и теперь Энка - один из самых благополучных спальных районов города, с большим преимуществом в своём расположении:
                 </Typography>
               </Grid>
               <Grid item>
                 <List
                   className={fullScreenMD ? classes.mobileList : classes.list}
                 >
-                  <ListItem disablePadding>- Школы</ListItem>
-                  <ListItem disablePadding>- Детские сады</ListItem>
-                  <ListItem disablePadding>- Продуктовые магазины и рынки</ListItem>
-                  <ListItem disablePadding>- Торговый центр «Красная площадь»</ListItem>
+                  <ListItem disablePadding>- 10 минут до Красной площади </ListItem>
+                  <ListItem disablePadding>- 15 минут до Баскет-Холла </ListItem>
+                  <ListItem disablePadding>- 20 минут до центра города</ListItem>
                 </List>
               </Grid>
               <Grid item>
