@@ -150,7 +150,7 @@ const useStyles = makeStyles((theme) => ({
   chooseSectionButtons: {
     width: "80%",
     marginLeft: "auto",
-    marginRight: "auto", 
+    marginRight: "auto",
     "& button": {
       width: "100%",
       backgroundColor: "white",
@@ -162,7 +162,7 @@ const useStyles = makeStyles((theme) => ({
   chooseSectionButtonsMD: {
     paddingBottom: 20,
     marginLeft: "auto",
-    marginRight: "auto", 
+    marginRight: "auto",
     width: "90%",
     paddingLeft: "0px !important",
     "& button": {
@@ -514,6 +514,7 @@ function Plans(props) {
   const [floors, showFloors] = React.useState(false);
   const [section, selectSection] = React.useState(1);
   const [modal, setModal] = React.useState(false);
+  const [selectedFlatType, setSelectedFlatType] = React.useState(allFlatTypes[0])
 
   const fullScreenLG = useMediaQuery(theme1.breakpoints.down("lg"));
   const fullScreenMD = useMediaQuery(theme1.breakpoints.down("md"));
@@ -521,6 +522,7 @@ function Plans(props) {
   const [plansArr, updatePlansArr] = React.useState(plans);
 
   function filterPlans(param) {
+    setSelectedFlatType(param);
     let result = [];
     result = plans.filter((elem) => {
       return elem.type === param
@@ -590,7 +592,7 @@ function Plans(props) {
               {allFlatTypes.map((type) => (
                 <Fab
                   variant="extended"
-                  size="medium"
+                  size={selectedFlatType === type ? "large" : "medium"}
                   color="common"
                   aria-label="flatType"
                   onClick={() => {
@@ -603,10 +605,11 @@ function Plans(props) {
               ))}
               <Fab
                 variant="extended"
-                size="medium"
+                size={selectedFlatType === "План этажа" ? "large" : "medium"}
                 color="common"
                 aria-label="floorPlan"
                 onClick={() => {
+                  setSelectedFlatType("План этажа")
                   showFloors(true);
                 }}
               >
@@ -617,132 +620,132 @@ function Plans(props) {
 
 
           <ThemeProvider theme={theme}>
-          <Grid
-            item
-            className={
-              fullScreenMD ? classes.sliderBlockMD : classes.sliderBlock
-            }
-          >
-            {!floors &&
-              <Box
-                sx={{
-                  maxWidth: 900,
-                  flexGrow: 1,
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                  textAlign: "justify",
-                }}
-              >
+            <Grid
+              item
+              className={
+                fullScreenMD ? classes.sliderBlockMD : classes.sliderBlock
+              }
+            >
+              {!floors &&
                 <Box
                   sx={{
-                    minHeight: 220,
-                    maxWidth: 850,
-                    width: "100%",
-                    p: 2,
-                    marginTop: 2,
+                    maxWidth: 900,
+                    flexGrow: 1,
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                    textAlign: "justify",
                   }}
                 >
-                  <Grid
-                    container
-                    direction={fullScreenMD ? "column" : "row"}
-                    justifyContent="center"
-                    alignItems="center"
+                  <Box
+                    sx={{
+                      minHeight: 220,
+                      maxWidth: 850,
+                      width: "100%",
+                      p: 2,
+                      marginTop: 2,
+                    }}
                   >
-                    <Grid item xs={6}>
-                      <div
-                        className={
-                          fullScreenSM
-                            ? classes.planImageBlockSM
-                            : fullScreenMD
-                              ? classes.planImageBlock
-                              : fullScreenLG
-                                ? classes.planImageBlockLG
-                                : classes.planImageBlock
-                        }
-                      >
-                        <img
-                          src={plansArr[activeStep]?.image}
-                          className={classes.planImage}
-                        />
-                      </div>
-                    </Grid>
-                    <Grid item xs={6}>
-                      <Grid
-                        container
-                        direction="column"
-                        justifyContent="center"
-                        alignItems="center"
-                      >
-                        <Grid item>
-                          <Grid
-                            container
-                            direction="column"
-                            className={
-                              fullScreenSM
-                                ? classes.planInfoSM
+                    <Grid
+                      container
+                      direction={fullScreenMD ? "column" : "row"}
+                      justifyContent="center"
+                      alignItems="center"
+                    >
+                      <Grid item xs={6}>
+                        <div
+                          className={
+                            fullScreenSM
+                              ? classes.planImageBlockSM
+                              : fullScreenMD
+                                ? classes.planImageBlock
                                 : fullScreenLG
-                                  ? classes.planInfoLG
-                                  : classes.planInfo
-                            }
-                          >
-                            <Grid item>
-                              <Typography
-                                align="center"
-                                variant={fullScreenSM ? "h6" : "h5"}
-                                gutterBottom
-                                component="div"
-                              >
-                                {plansArr[activeStep]?.type}
-                              </Typography>
-                            </Grid>
-                            <br />
+                                  ? classes.planImageBlockLG
+                                  : classes.planImageBlock
+                          }
+                        >
+                          <img
+                            src={plansArr[activeStep]?.image}
+                            className={classes.planImage}
+                          />
+                        </div>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Grid
+                          container
+                          direction="column"
+                          justifyContent="center"
+                          alignItems="center"
+                        >
+                          <Grid item>
+                            <Grid
+                              container
+                              direction="column"
+                              className={
+                                fullScreenSM
+                                  ? classes.planInfoSM
+                                  : fullScreenLG
+                                    ? classes.planInfoLG
+                                    : classes.planInfo
+                              }
+                            >
+                              <Grid item>
+                                <Typography
+                                  align="center"
+                                  variant={fullScreenSM ? "h6" : "h5"}
+                                  gutterBottom
+                                  component="div"
+                                >
+                                  {plansArr[activeStep]?.type}
+                                </Typography>
+                              </Grid>
+                              <br />
 
-                            <Grid item>
-                              <Grid
-                                container
-                                justifyContent="space-between"
-                                spacing={
-                                  fullScreenSM
-                                    ? 5
-                                    : fullScreenMD
-                                      ? 10
-                                      : fullScreenLG
-                                        ? 4
-                                        : 15
-                                }
-                              >
-                                <Grid item>
-                                  {fullScreenSM ? "Площадь" : "Общая площадь"}
+                              <Grid item>
+                                <Grid
+                                  container
+                                  justifyContent="space-between"
+                                  spacing={
+                                    fullScreenSM
+                                      ? 5
+                                      : fullScreenMD
+                                        ? 10
+                                        : fullScreenLG
+                                          ? 4
+                                          : 15
+                                  }
+                                >
+                                  <Grid item>
+                                    {fullScreenSM ? "Площадь" : "Общая площадь"}
+                                  </Grid>
+                                  <Grid item>{plansArr[activeStep]?.area} м²</Grid>
                                 </Grid>
-                                <Grid item>{plansArr[activeStep]?.area} м²</Grid>
-                              </Grid>
 
-                              <Grid container justifyContent="space-between">
-                                <Grid item>Секция </Grid>
-                                <Grid item>{plansArr[activeStep]?.section}</Grid>
-                              </Grid>
+                                <Grid container justifyContent="space-between">
+                                  <Grid item>Секция </Grid>
+                                  <Grid item>{plansArr[activeStep]?.section}</Grid>
+                                </Grid>
 
-                              <Grid container justifyContent="space-between">
-                                <Grid item>Этаж</Grid>{" "}
-                                <Grid item>{plansArr[activeStep]?.floor}</Grid>
+                                <Grid container justifyContent="space-between">
+                                  <Grid item>Этаж</Grid>{" "}
+                                  <Grid item>{plansArr[activeStep]?.floor}</Grid>
+                                </Grid>
                               </Grid>
                             </Grid>
                           </Grid>
-                        </Grid>
-                        <Grid item className={classes.apartmentButton}>
-                          <FormAndButton
-                            content={fullScreenSM ? "Консультация" : "Получить консультацию"}
-                            color="secondary"
-                            data={{
-                              subject: "Заявка с сайта ЖК Гармония",
-                              text: `Секция: ${plansArr[activeStep]?.section}\nЭтаж: ${plansArr[activeStep]?.floor}\nПланировка: ${plansArr[activeStep]?.area}`
-                            }}
-                          />
+                          <Grid item className={classes.apartmentButton}>
+                            <FormAndButton
+                              content={fullScreenSM ? "Консультация" : "Получить консультацию"}
+                              color="secondary"
+                              data={{
+                                subject: "Заявка с сайта ЖК Гармония",
+                                text: `Секция: ${plansArr[activeStep]?.section}\nЭтаж: ${plansArr[activeStep]?.floor}\nПланировка: ${plansArr[activeStep]?.area}`
+                              }}
+                            />
+                          </Grid>
                         </Grid>
                       </Grid>
                     </Grid>
-                  </Grid>
-                </Box>
+                  </Box>
                   <MobileStepper
                     className={classes.sliderBottom}
                     variant="none" // Здесь можешь добавить вместо none - dots/progress/text 
@@ -780,55 +783,64 @@ function Plans(props) {
                       </Fab>
                     }
                   />
-              </Box>
-            }
-            {floors &&
-              <Grid
-                item
-              >
-                <Stack direction={fullScreenSM ? "column" : "row"} spacing={2} alignItems="flex-end" className={
-                  fullScreenMD
-                    ? classes.chooseSectionButtonsMD
-                    : classes.chooseSectionButtons}>
-                  <Fab variant="extended" size="medium" color="common" aria-label="1-section"
-                    onClick={() => { showFloors(true); selectSection(1) }}
-                  >
-                    1 секция
-                  </Fab>
-                  <Fab variant="extended" size="medium" color="common" aria-label="2-section"
-                    onClick={() => { showFloors(true); selectSection(2) }}
-                  >
-                    2 секция
-                  </Fab>
-                  <Fab variant="extended" size="medium" color="common" aria-label="3-section"
-                    onClick={() => { showFloors(true); selectSection(3) }}
-                  >
-                    3 секция
-                  </Fab>
-                </Stack>
-                <Grid container justifyContent="center">
-                  <Grid item>
-                  <div
-                    className={
-                      fullScreenSM
-                        ? classes.floorImageBlockSM
-                          : fullScreenLG
-                            ? classes.floorImageBlockLG
-                            : classes.floorImageBlock
-                    }
-                  >
-                    <img
-                      src={sectionPlans[section]}
-                      className={classes.floorImage}
-                      onClick={() => { setModal(section) }}
-                    />
-                  </div>
+                </Box>
+              }
+              {floors &&
+                <Grid
+                  item
+                >
+                  <Stack direction={fullScreenSM ? "column" : "row"} spacing={2} alignItems="flex-end" className={
+                    fullScreenMD
+                      ? classes.chooseSectionButtonsMD
+                      : classes.chooseSectionButtons}>
+                    <Fab variant="extended"
+                      size={section === 1 ? "large" : "medium"}
+                      color="common"
+                      aria-label="1-section"
+                      onClick={() => { showFloors(true); selectSection(1) }}
+                    >
+                      1 секция
+                    </Fab>
+                    <Fab variant="extended"
+                      size={section === 2 ? "large" : "medium"}
+                      color="common"
+                      aria-label="2-section"
+                      onClick={() => { showFloors(true); selectSection(2) }}
+                    >
+                      2 секция
+                    </Fab>
+                    <Fab variant="extended"
+                      size={section === 3 ? "large" : "medium"}
+                      color="common"
+                      aria-label="3-section"
+                      onClick={() => { showFloors(true); selectSection(3) }}
+                    >
+                      3 секция
+                    </Fab>
+                  </Stack>
+                  <Grid container justifyContent="center">
+                    <Grid item>
+                      <div
+                        className={
+                          fullScreenSM
+                            ? classes.floorImageBlockSM
+                            : fullScreenLG
+                              ? classes.floorImageBlockLG
+                              : classes.floorImageBlock
+                        }
+                      >
+                        <img
+                          src={sectionPlans[section]}
+                          className={classes.floorImage}
+                          onClick={() => { setModal(section) }}
+                        />
+                      </div>
+                    </Grid>
                   </Grid>
                 </Grid>
-              </Grid>
 
-            }
-          </Grid>
+              }
+            </Grid>
           </ThemeProvider>
           <Grid item className={classes.formButton}>
             <FormAndButton
