@@ -109,40 +109,39 @@ export default function FormAndButton(props) {
     };
     updateBackdrop(true);
     setIsSending(true);
-    const text = props.data.text + `\nИмя: ${data.name}\nТелефон: ${data.phone}`;
+
     try {
+      const text = props.data.text + `\nИмя: ${data.name}\nТелефон: ${data.phone}`;
       const mailRes = await awsMail({
         ...props.data,
         text: text
       })
-      const roistatRes = await awsHarmonyRoistat({
-        phone: data.phone,
-        name: data.name,
-      })
 
-      if (roistatRes.status === 200 && mailRes.status === 200) {
-        updateSuccessSnack(true);
-        updateErrorSnack(false);
-        updateErrorSnackMessage("Произошла ошибка. Попробуйте снова.")
-        handleClose();
-        setTimeout(() => setIsSending(false), 500)
+      if (mailRes.status === 200) {
+        onSuccess();
       } else {
-        // сообщение об ошибке при отправке
-        updateErrorSnackMessage("Произошла ошибка. Попробуйте снова.")
-        updateErrorSnack(true);
-        updateSuccessSnack(false);
-        setTimeout(() => setIsSending(false), 500)
+        onFail();
       }
       updateBackdrop(false);
     } catch (e) {
-      console.log(e);
-      // сообщение об ошибке при отправке
-      updateErrorSnack(true);
-      updateErrorSnackMessage("Произошла ошибка. Попробуйте снова.")
-      updateSuccessSnack(false);
-      setTimeout(() => setIsSending(false), 500)
-      updateBackdrop(false);
+      onFail(true);
     }
+  }
+
+  function onSuccess() {
+    updateSuccessSnack(true);
+    updateErrorSnack(false);
+    updateErrorSnackMessage("Произошла ошибка. Попробуйте снова.")
+    handleClose();
+    setTimeout(() => setIsSending(false), 500)
+  }
+
+  function onFail(closeBackdrop = false) {
+    updateErrorSnack(true);
+    updateErrorSnackMessage("Произошла ошибка. Попробуйте снова.")
+    updateSuccessSnack(false);
+    setTimeout(() => setIsSending(false), 500)
+    updateBackdrop(false);
   }
 
   return (
