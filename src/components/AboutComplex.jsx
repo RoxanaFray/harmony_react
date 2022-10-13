@@ -111,7 +111,7 @@ export default function AboutComplex(props) {
 					alignItems="center"
 					className={fullScreenSM ? classes.mobileContent : classes.content}
 				>
-					<Grid item xs={6}>
+					<Grid item xs={7}>
 						<img
 							src={houseImage}
 							width="100%"
@@ -120,7 +120,7 @@ export default function AboutComplex(props) {
 						></img>
 					</Grid>
 
-					<Grid item xs={6}>
+					<Grid item xs={5}>
 						<Grid
 							container
 							direction="column"

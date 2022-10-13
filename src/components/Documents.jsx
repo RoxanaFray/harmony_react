@@ -10,7 +10,7 @@ import Collapse from "@mui/material/Collapse";
 import Typography from "@mui/material/Typography";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import BlueBirds from "../images/blue_birds.png";
-import FeedbackImage from "../images/649-6.jpeg";
+import FeedbackImage from "../images/cam_03_fx.png";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 
@@ -81,6 +81,9 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     marginTop: "-55px",
   },
+  feedbackImage: {
+		borderRadius: "40px 0 0 0"
+	}
 }));
 
 
@@ -166,7 +169,7 @@ export default function Documents() {
           alignItems="center"
           className={fullScreenSM ? classes.mobileContent : classes.content}
         >
-          <Grid item xs={6} className={classes.documents}>
+          <Grid item xs={5} className={classes.documents}>
             <Typography
               variant="h6"
               gutterBottom
@@ -245,7 +248,7 @@ export default function Documents() {
         
             </List>
           </Grid>
-          <Grid item xs={6} className={classes.feedback}>
+          <Grid item xs={7} className={classes.feedback}>
             <img
               src={FeedbackImage}
               alt="Отзывы"
