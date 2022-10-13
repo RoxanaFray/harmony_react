@@ -20,7 +20,7 @@ import MuiAlert from "@mui/material/Alert";
 import CircularProgress from "@mui/material/CircularProgress";
 import Snackbar from "@mui/material/Snackbar";
 
-import { awsMail, awsHarmonyRoistat } from "../utils/requests";
+import { awsB24Lead, awsMail } from "../utils/requests";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -117,8 +117,12 @@ export default function CallbackForm(props) {
         ...props.data,
         text: text
       })
+      const b24Res = await awsB24Lead({
+        phone: data.phone,
+        name: data.name
+      })
 
-      if (mailRes.status === 200) {
+      if (mailRes.status === 200 && b24Res.status === 200) {
         onSuccess();
       } else {
         onFail();
