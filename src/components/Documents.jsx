@@ -13,6 +13,7 @@ import BlueBirds from "../images/blue_birds.png";
 import FeedbackImage from "../images/cam_03_fx.png";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
+import ImageModal from './ImageModal'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -82,7 +83,8 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "-55px",
   },
   feedbackImage: {
-		borderRadius: "40px 0 0 0"
+		borderRadius: "40px 0 0 0",
+    cursor: 'zoom-in',
 	}
 }));
 
@@ -124,6 +126,7 @@ export default function Documents() {
   const theme1 = useTheme();
   const fullScreenMD = useMediaQuery(theme1.breakpoints.down("md"));
   const fullScreenSM = useMediaQuery(theme1.breakpoints.down("sm"));
+	const [modal, setModal] = React.useState(false);
 
   const handleClick = () => {
     setOpen(!open);
@@ -142,6 +145,7 @@ export default function Documents() {
 
   return (
     <div className={classes.root}>
+      <ImageModal modal={modal} setModal={() => setModal(false)} image={FeedbackImage} close={() => setModal(false)}></ImageModal>
       <div
         id="documents"
         className={fullScreenMD ? classes.mobileAnchor : classes.anchor}
@@ -254,6 +258,7 @@ export default function Documents() {
               alt="Отзывы"
               width="100%"
               className={classes.feedbackImage}
+              onClick={() => { setModal(FeedbackImage) }}
             ></img>
           </Grid>
         </Grid>

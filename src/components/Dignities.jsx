@@ -13,6 +13,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
+import ImageModal from './ImageModal'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -121,7 +122,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   complexImage: {
-		borderRadius: "0 40px 0 0"
+		borderRadius: "0 40px 0 0",
+    cursor: 'zoom-in',
 	}
 }));
 
@@ -131,6 +133,7 @@ export default function Dignities() {
   const theme = useTheme();
   const fullScreenMD = useMediaQuery(theme.breakpoints.down("md"));
   const fullScreenSM = useMediaQuery(theme.breakpoints.down("sm"));
+  const [modal, setModal] = React.useState(false);
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
@@ -138,6 +141,7 @@ export default function Dignities() {
 
   return (
     <div className={classes.root}>
+      <ImageModal modal={modal} setModal={() => setModal(false)} image={houseImage1} close={() => setModal(false)}></ImageModal>
       <div
         id="dignities"
         className={fullScreenMD ? classes.mobileAnchor : classes.anchor}
@@ -363,6 +367,7 @@ export default function Dignities() {
               width="100%"
               alt="Изображение жилого комплекса"
               className={classes.complexImage}
+              onClick={() => { setModal(houseImage1) }}
             ></img>
           </Grid>
         </Grid>

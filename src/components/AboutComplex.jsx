@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import FormAndButton from "./FormAndButton";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
+import ImageModal from './ImageModal'
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -84,8 +85,9 @@ const useStyles = makeStyles((theme) => ({
 		marginTop: "-55px",
 	},
 	complexImage: {
-		borderRadius: "40px 0 0 0"
-	}
+		borderRadius: "40px 0 0 0",
+		cursor: 'zoom-in',
+	},
 }));
 
 export default function AboutComplex(props) {
@@ -93,9 +95,11 @@ export default function AboutComplex(props) {
 	const theme = useTheme();
 	const fullScreenMD = useMediaQuery(theme.breakpoints.down("md"));
 	const fullScreenSM = useMediaQuery(theme.breakpoints.down("sm"));
+	const [modal, setModal] = React.useState(false);
 
 	return (
 		<div className={classes.root}>
+			<ImageModal modal={modal} setModal={() => setModal(false)} image={houseImage} close={() => setModal(false)}></ImageModal>
 			<div
 				id="about_complex"
 				className={fullScreenMD ? classes.mobileAnchor : classes.anchor}
@@ -117,6 +121,7 @@ export default function AboutComplex(props) {
 							width="100%"
 							alt="Изображение жилого комплекса"
 							className={classes.complexImage}
+							onClick={() => { setModal(houseImage) }}
 						></img>
 					</Grid>
 
@@ -145,7 +150,7 @@ export default function AboutComplex(props) {
 									className={classes.description}
 									align={fullScreenSM ? "justify" : "left"}
 								>
-									«Гармония» - жилой комплекс где сплетается семейное тепло с радостью, 
+									«Гармония» - жилой комплекс где сплетается семейное тепло с радостью,
 									а удобное расположение — с высоким уровнем комфорта.
 								</Typography>
 							</Grid>

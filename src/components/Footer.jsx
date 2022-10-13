@@ -71,7 +71,7 @@ export default function Footer() {
             </Grid>
             <Grid item xs={3}>
               <Typography variant="body2">
-                +7 961 245 23 45
+                8 800 550 30 99
                 <br />
                 harmony@regionstroy.ru
               </Typography>

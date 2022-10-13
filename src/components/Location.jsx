@@ -9,10 +9,7 @@ import FormAndButton from "./FormAndButton";
 import Typography from "@mui/material/Typography";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
-import Backdrop from '@mui/material/Backdrop';
-import Modal from '@mui/material/Modal';
-import Fade from '@mui/material/Fade';
-import Box from "@mui/material/Box";
+import ImageModal from './ImageModal'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -32,30 +29,6 @@ const useStyles = makeStyles((theme) => ({
   content: {
     paddingLeft: 50,
     paddingRight: 50
-  },
-  ModalBackground: {
-    "& div": {
-      backgroundColor: "rgba(0, 0, 0, 0.8)",
-    }
-  },
-  modalBlock: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-    width: "80%"
-  },
-  modalImage: {
-    maxWidth: "90%",
-    maxHeight: "100%",
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
   },
   title: {
     color: "#1f2e58",
@@ -110,27 +83,8 @@ export default function Location() {
 
   return (
     <div className={classes.root}>
-      <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        className={classes.ModalBackground}
-        open={modal}
-        onClose={() => setModal(false)}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={modal}>
-          <Box sx={classes.modalBlock}>
-            <img
-              src={Map}
-              className={classes.modalImage}
-            />
-          </Box>
-        </Fade>
-      </Modal>
+      <ImageModal modal={modal} setModal={() => setModal(false)} image={Map} close={() => setModal(false)}></ImageModal>
+
       <div
         id="location"
         className={fullScreenMD ? classes.mobileAnchor : classes.anchor}
