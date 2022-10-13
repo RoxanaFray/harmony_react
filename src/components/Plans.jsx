@@ -3,7 +3,7 @@ import { useTheme } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import { makeStyles } from "@mui/styles";
 import Container from "@mui/material/Container";
-import FormAndButton from "./FormAndButton";
+import CallbackForm from "./FormAndButton";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import MobileStepper from "@mui/material/MobileStepper";
@@ -733,7 +733,7 @@ function Plans(props) {
                             </Grid>
                           </Grid>
                           <Grid item className={classes.apartmentButton}>
-                            <FormAndButton
+                            <CallbackForm
                               content={fullScreenSM ? "Консультация" : "Получить консультацию"}
                               color="secondary"
                               data={{
@@ -843,7 +843,7 @@ function Plans(props) {
             </Grid>
           </ThemeProvider>
           <Grid item className={classes.formButton}>
-            <FormAndButton
+            <CallbackForm
               content={fullScreenSM ? "Консультация" : "Получить консультацию"}
               color="primary"
               data={{
