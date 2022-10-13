@@ -13,6 +13,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import NumberFormat from 'react-number-format';
+import ym from 'react-yandex-metrika';
 
 import Backdrop from "@mui/material/Backdrop";
 import MuiAlert from "@mui/material/Alert";
@@ -133,6 +134,7 @@ export default function FormAndButton(props) {
     updateErrorSnack(false);
     updateErrorSnackMessage("Произошла ошибка. Попробуйте снова.")
     handleClose();
+    ym('reachGoal', 'SEND')
     setTimeout(() => setIsSending(false), 500)
   }
 
