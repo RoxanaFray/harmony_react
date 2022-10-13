@@ -5,7 +5,7 @@ import Container from "@mui/material/Container";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Map from "../images/mapimage-1.png";
-import CallbackForm from "./FormAndButton";
+import CallbackForm from "./CallbackForm";
 import Typography from "@mui/material/Typography";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";

@@ -3,7 +3,7 @@ import { useTheme } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import { makeStyles } from "@mui/styles";
 import Container from "@mui/material/Container";
-import CallbackForm from "./FormAndButton";
+import CallbackForm from "./CallbackForm";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import MobileStepper from "@mui/material/MobileStepper";

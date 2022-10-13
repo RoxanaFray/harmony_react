@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FormAndButton(props) {
+export default function CallbackForm(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
