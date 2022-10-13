@@ -4,7 +4,7 @@ import Container from "@mui/material/Container";
 import { makeStyles } from "@mui/styles";
 import houseImage from "../images/cam_02_fx.png";
 import Typography from "@mui/material/Typography";
-import FormAndButton from "./FormAndButton";
+import CallbackForm from "./CallbackForm";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import ImageModal from './ImageModal'
@@ -155,7 +155,7 @@ export default function AboutComplex(props) {
 								</Typography>
 							</Grid>
 							<Grid item xs={2}>
-								<FormAndButton
+								<CallbackForm
 									content="Оставить заявку"
 									color="primary"
 									data={{

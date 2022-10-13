@@ -1,0 +1,3 @@
+function getRoistatVisit() {
+  return roistatVisit;
+}

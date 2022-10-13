@@ -7,7 +7,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import houseImage1 from "../images/cam_04_fx.png";
-import FormAndButton from "./FormAndButton";
+import CallbackForm from "./CallbackForm";
 import BirdImage from "../images/bird_image.png";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
@@ -350,7 +350,7 @@ export default function Dignities() {
                 </div>
               </Grid>
               <Grid item>
-                <FormAndButton 
+                <CallbackForm 
                 content="Узнать больше" 
                 color="secondary" 
                 data={{
