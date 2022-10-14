@@ -11,6 +11,7 @@ import Typography from "@mui/material/Typography";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import BlueBirds from "../images/blue_birds.png";
 import FeedbackImage from "../images/cam_03_fx.png";
+import ProjectDeclaration from "../documents/project_declaration.pdf";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import ImageModal from './ImageModal'
@@ -50,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     bottom: '-2px',
     left: 115,
     color: '#1f2e58',
-},
+  },
   birds: {
     position: "absolute",
     left: "35%",
@@ -83,41 +84,37 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "-55px",
   },
   feedbackImage: {
-		borderRadius: "40px 0 0 0",
+    borderRadius: "40px 0 0 0",
     cursor: 'zoom-in',
-	}
+  }
 }));
 
 
 const DocumentsArr = [
-  {
-    title: "Разрешение на строительство - Литер 1",
-    href: "https://xn----7sbfcciddltb2cgv9bq4o.xn--p1ai/",
-  },
-  {
-    title: "Разрешение на строительство - Литер 1",
-    href: "react-project/pdf/Литер 1 Мята продление от 29.05.2020 г..pdf",
-  },
-  {
-    title: "Разрешение на строительство - Литер 2",
-    href: "react-project/pdf/Литер 2 Мята продление от 29.05.2020 г..pdf",
-  },
-  {
-    title: "Разрешение на строительство - Литер 3",
-    href: "react-project/pdf/Литер 3 Мята продление от 30.04.20.pdf",
-  },
-  {
-    title: "Разрешение на строительство - Литер 4",
-    href: "react-project/pdf/Литер 4 Мята продление от 29.05.20 г..pdf",
-  },
-  {
-    title: "Проектная декларация - Литер 1",
-    href: "react-project/pdf/project_declaration_liter_1.pdf",
-  },
-  {
-    title: "Проектная декларация - Литер 2",
-    href: "react-project/pdf/project_declaration_liter_2.pdf",
-  },
+  // {
+  //   title: "Разрешение на строительство - Литер 1",
+  //   href: "",
+  // },
+  // {
+  //   title: "Разрешение на строительство - Литер 2",
+  //   href: "",
+  // },
+  // {
+  //   title: "Разрешение на строительство - Литер 3",
+  //   href: "",
+  // },
+  // {
+  //   title: "Разрешение на строительство - Литер 4",
+  //   href: "",
+  // },
+  // {
+  //   title: "Проектная декларация",
+  //   href: "",
+  // },
+  // {
+  //   title: "Проектная декларация - Литер 2",
+  //   href: "",
+  // },
 ];
 
 export default function Documents() {
@@ -126,7 +123,7 @@ export default function Documents() {
   const theme1 = useTheme();
   const fullScreenMD = useMediaQuery(theme1.breakpoints.down("md"));
   const fullScreenSM = useMediaQuery(theme1.breakpoints.down("sm"));
-	const [modal, setModal] = React.useState(false);
+  const [modal, setModal] = React.useState(false);
 
   const handleClick = () => {
     setOpen(!open);
@@ -187,9 +184,9 @@ export default function Documents() {
               sx={{ width: "100%", maxWidth: fullScreenSM ? 360 : 800, bgcolor: "background.paper" }}
               component="nav"
             >
-              <ListItemButton
+              {/* <ListItemButton
                 component="a"
-                href="https://xn----7sbfcciddltb2cgv9bq4o.xn--p1ai/"
+                href=""
                 target="_blank"
               >
                 <ListItemIcon>
@@ -200,10 +197,10 @@ export default function Documents() {
                   primary="Разрешение на строительство"
                   className={classes.itemText}
                 />
-              </ListItemButton>
+              </ListItemButton> */}
               <ListItemButton
                 component="a"
-                href="https://xn----7sbfcciddltb2cgv9bq4o.xn--p1ai/"
+                href={ProjectDeclaration}
                 target="_blank"
               >
                 <ListItemIcon>
@@ -214,9 +211,9 @@ export default function Documents() {
                   className={classes.itemText}
                 />
               </ListItemButton>
-              <ListItemButton
+              {/* <ListItemButton
                 component="a"
-                href="https://xn----7sbfcciddltb2cgv9bq4o.xn--p1ai/"
+                href=""
                 target="_blank"
               >
                 <ListItemIcon>
@@ -226,8 +223,8 @@ export default function Documents() {
                   primary="Разрешение на строительство Литер 2"
                   className={classes.itemText}
                 />
-              </ListItemButton>
-              <Collapse in={open} timeout="auto" unmountOnExit>
+              </ListItemButton> */}
+              {/* <Collapse in={open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                   {DocumentsArr.map((elem) => {
                     return (
@@ -236,20 +233,20 @@ export default function Documents() {
                   })}
                 </List>
               </Collapse>
-           
-               <Grid container className={classes.buttonBlock} 
-               justifyContent={fullScreenMD ? 'center' : 'flex-start'}>
-                  <Typography variant='body1' className={classes.button} onClick={handleClick} >
-                     {open ? 'Свернуть' : 'Смотреть все'}
-                     <div className={classes.plus}>
-                     {open || fullScreenMD ? '' : '+'}
-                       </div>
-                   </Typography>
-                   </Grid>
-                  
-                  
-        
-        
+
+              <Grid container className={classes.buttonBlock}
+                justifyContent={fullScreenMD ? 'center' : 'flex-start'}>
+                <Typography variant='body1' className={classes.button} onClick={handleClick} >
+                  {open ? 'Свернуть' : 'Смотреть все'}
+                  <div className={classes.plus}>
+                    {open || fullScreenMD ? '' : '+'}
+                  </div>
+                </Typography>
+              </Grid> */}
+
+
+
+
             </List>
           </Grid>
           <Grid item xs={7} className={classes.feedback}>

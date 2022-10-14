@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import { styled } from "@mui/material/styles";
+import Link from '@mui/material/Link';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -71,9 +72,13 @@ export default function Footer() {
             </Grid>
             <Grid item xs={3}>
               <Typography variant="body2">
-                8 800 550 30 99
+                <Link color="inherit" href='tel:8 800 550 30 99'>
+                  8 800 550 30 99
+                </Link>
                 <br />
-                harmony@regionstroy.ru
+                <Link color="inherit" href='mailto:info@zkgarmonia.ru'>
+                  info@zkgarmonia.ru
+                </Link>
               </Typography>
             </Grid>
             <Grid item xs={2}>
