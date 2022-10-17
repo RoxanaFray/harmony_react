@@ -18,10 +18,14 @@ import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 
+// section plans
 import firstsection2and5floor from "../images/plans/firstsection2and5floor.png";
 import secondsection2and5floor from "../images/plans/secondsection2and5floor.png";
 import thirdsection2and5floor from "../images/plans/thirdsection2and5floor.png";
 import apartmentsPlansData from "../data/apartmentsPlansData.json";
+
+import getApartmentTypeString from "../utils/apartmentsTypeString";
+import getImagesDynamic from "../utils/getImagesDynamic";
 
 
 const theme = createTheme({
@@ -259,29 +263,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-let plans = [];
-apartmentsPlansData.forEach((elem) => {
-  const apartmentType = (rooms) => {
-    if (rooms == 0) return "Студия"
-    if (rooms == 1) return "1-комнатная"
-    if (rooms == 2) return "2-комнатная"
-  }
-  plans.push({
-    image: elem.path,
-    type: apartmentType(elem.rooms),
+const allApartmentPlansImages = getImagesDynamic();
+const apartmentsPlans = apartmentsPlansData.map((elem) => {
+  return {
+    image: allApartmentPlansImages[elem.path].default,
+    type: getApartmentTypeString(elem.rooms),
     floor: elem.floor,
     area: elem.area,
     section: elem.section,
-  })
+  };
 })
-
 const sectionPlans = {
   1: firstsection2and5floor,
   2: secondsection2and5floor,
   3: thirdsection2and5floor,
 }
 
-const allFlatTypes = plans
+const allFlatTypes = apartmentsPlans
   .map((elem) => elem.type)
   .filter(function (item, pos, array) {
     return array.indexOf(item) == pos;
@@ -307,12 +305,12 @@ function Plans(props) {
   const fullScreenLG = useMediaQuery(theme1.breakpoints.down("lg"));
   const fullScreenMD = useMediaQuery(theme1.breakpoints.down("md"));
   const fullScreenSM = useMediaQuery(theme1.breakpoints.down("sm"));
-  const [plansArr, updatePlansArr] = React.useState(plans);
+  const [plansArr, updatePlansArr] = React.useState(apartmentsPlans);
 
   function filterPlans(param) {
     setSelectedFlatType(param);
     let result = [];
-    result = plans.filter((elem) => {
+    result = apartmentsPlans.filter((elem) => {
       return elem.type === param
     });
     setActiveStep(0);
@@ -453,6 +451,7 @@ function Plans(props) {
                         >
                           <img
                             src={plansArr[activeStep]?.image}
+                            alt="image not found"
                             className={classes.planImage}
                           />
                         </div>
