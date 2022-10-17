@@ -18,40 +18,10 @@ import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 
-
-// apartment plans 
-import s1f1a2584 from "../images/plans/1-section/1-floor/section-1-floor-1-1r-25,84.png";
-import s1f1a3521 from "../images/plans/1-section/1-floor/section-1-floor-1-1r-35,21.png";
-import s1f1a3536 from "../images/plans/1-section/1-floor/section-1-floor-1-1r-35,36.png";
-import s1f1a3541 from "../images/plans/1-section/1-floor/section-1-floor-1-1r-35,41.png";
-import s1f1a3787 from "../images/plans/1-section/1-floor/section-1-floor-1-1r-37,87.png";
-import s1f1a4447 from "../images/plans/1-section/1-floor/section-1-floor-1-2r-44,47.png";
-import s1f1a4912 from "../images/plans/1-section/1-floor/section-1-floor-1-2r-49,12.png";
-import s1f1a5001 from "../images/plans/1-section/1-floor/section-1-floor-1-2r-50,01.png";
-import s1f1a5178 from "../images/plans/1-section/1-floor/section-1-floor-1-2r-51,78.png";
-import s1f25a3521 from "../images/plans/1-section/2-5-floor/section-1-floor-2-5-1r-35,21.png";
-import s1f25a3536 from "../images/plans/1-section/2-5-floor/section-1-floor-2-5-1r-35,36.png";
-import s1f25a3541 from "../images/plans/1-section/2-5-floor/section-1-floor-2-5-1r-35,41.png";
-import s1f25a3660 from "../images/plans/1-section/2-5-floor/section-1-floor-2-5-1r-36,60.png";
-import s1f25a3682 from "../images/plans/1-section/2-5-floor/section-1-floor-2-5-1r-36,82.png";
-import s1f25a4288 from "../images/plans/1-section/2-5-floor/section-1-floor-2-5-2r-42,88.png";
-import s1f25a4912 from "../images/plans/1-section/2-5-floor/section-1-floor-2-5-2r-49,12.png";
-import s1f25a5178 from "../images/plans/1-section/2-5-floor/section-1-floor-2-5-2r-51,78.png";
-import s1f25a5847 from "../images/plans/1-section/2-5-floor/section-1-floor-2-5-2r-58,47.png";
-import s2f1a1868 from "../images/plans/2-section/1-floor/section-2-floor-1-1r-18,68.png";
-import s2f1a3681 from "../images/plans/2-section/1-floor/section-2-floor-1-1r-36,81.png";
-import s2f1a3683 from "../images/plans/2-section/1-floor/section-2-floor-1-1r-36,83.png";
-import s2f1a4470 from "../images/plans/2-section/1-floor/section-2-floor-1-2r-44,70.png";
-import s2f1a4494 from "../images/plans/2-section/1-floor/section-2-floor-1-2r-44,94.png";
-import s2f25a3675 from "../images/plans/2-section/2-5-floor/section-2-floor-2-5-1r-36,75.png";
-import s2f25a3681 from "../images/plans/2-section/2-5-floor/section-2-floor-2-5-1r-36,81.png";
-import s2f25a3683 from "../images/plans/2-section/2-5-floor/section-2-floor-2-5-1r-36,83.png";
-import s2f25a5458 from "../images/plans/2-section/2-5-floor/section-2-floor-2-5-2r-54,58.png";
-import s2f25a5459 from "../images/plans/2-section/2-5-floor/section-2-floor-2-5-2r-54,59.png";
-// section plans
 import firstsection2and5floor from "../images/plans/firstsection2and5floor.png";
 import secondsection2and5floor from "../images/plans/secondsection2and5floor.png";
 import thirdsection2and5floor from "../images/plans/thirdsection2and5floor.png";
+import apartmentsPlansData from "../data/apartmentsPlansData.json";
 
 
 const theme = createTheme({
@@ -289,204 +259,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const plans = [
-  {
-    image: s1f1a2584,
-    type: "Студия",
-    floor: "1",
-    area: "25.84",
-    section: "1, 3",
-  },
-  {
-    image: s1f1a3521,
-    type: "1-комнатная",
-    floor: "1",
-    area: "35.21",
-    section: "1, 3",
-  },
-  {
-    image: s1f1a3536,
-    type: "1-комнатная",
-    floor: "1",
-    area: "35.36",
-    section: "1, 3",
-  },
-  {
-    image: s1f1a3541,
-    type: "1-комнатная",
-    floor: "1",
-    area: "35.41",
-    section: "1, 3",
-  },
-  {
-    image: s1f1a3787,
-    type: "1-комнатная",
-    floor: "1",
-    area: "37.87",
-    section: "1, 3",
-  },
-  {
-    image: s1f1a4447,
-    type: "2-комнатная",
-    floor: "1",
-    area: "44.47",
-    section: "1, 3",
-  },
-  {
-    image: s1f1a4912,
-    type: "2-комнатная",
-    floor: "1",
-    area: "49.12",
-    section: "1, 3",
-  },
-  {
-    image: s1f1a5001,
-    type: "2-комнатная",
-    floor: "1",
-    area: "50.01",
-    section: "1, 3",
-  },
-  {
-    image: s1f1a5178,
-    type: "2-комнатная",
-    floor: "1",
-    area: "51.78",
-    section: "1, 3",
-  },
-  {
-    image: s1f25a3521,
-    type: "1-комнатная",
-    floor: "2-5",
-    area: "35.21",
-    section: "1, 3",
-  },
-  {
-    image: s1f25a3536,
-    type: "1-комнатная",
-    floor: "2-5",
-    area: "35.36",
-    section: "1, 3",
-  },
-  {
-    image: s1f25a3541,
-    type: "1-комнатная",
-    floor: "2-5",
-    area: "35.41",
-    section: "1, 3",
-  },
-  {
-    image: s1f25a3660,
-    type: "Студия",
-    floor: "2-5",
-    area: "36.60",
-    section: "1, 3",
-  },
-  {
-    image: s1f25a3682,
-    type: "1-комнатная",
-    floor: "2-5",
-    area: "36.82",
-    section: "1, 3",
-  },
-  {
-    image: s1f25a4288,
-    type: "2-комнатная",
-    floor: "2-5",
-    area: "42.88",
-    section: "1, 3",
-  },
-  {
-    image: s1f25a4912,
-    type: "2-комнатная",
-    floor: "2-5",
-    area: "49.12",
-    section: "1, 3",
-  },
-  {
-    image: s1f25a5178,
-    type: "2-комнатная",
-    floor: "2-5",
-    area: "51.78",
-    section: "1, 3",
-  },
-  {
-    image: s1f25a5847,
-    type: "2-комнатная",
-    floor: "2-5",
-    area: "58.47",
-    section: "1, 3",
-  },
-  {
-    image: s2f1a1868,
-    type: "Студия",
-    floor: "1",
-    area: "18.68",
-    section: "2",
-  },
-  {
-    image: s2f1a3681,
-    type: "1-комнатная",
-    floor: "1",
-    area: "36.81",
-    section: "2",
-  },
-  {
-    image: s2f1a3683,
-    type: "1-комнатная",
-    floor: "1",
-    area: "36.83",
-    section: "2",
-  },
-  {
-    image: s2f1a4470,
-    type: "2-комнатная",
-    floor: "1",
-    area: "44.70",
-    section: "2",
-  },
-  {
-    image: s2f1a4494,
-    type: "2-комнатная",
-    floor: "1",
-    area: "44.94",
-    section: "2",
-  },
-  {
-    image: s2f25a3675,
-    type: "1-комнатная",
-    floor: "2-5",
-    area: "36.75",
-    section: "2",
-  },
-  {
-    image: s2f25a3681,
-    type: "1-комнатная",
-    floor: "2-5",
-    area: "36.81",
-    section: "2",
-  },
-  {
-    image: s2f25a3683,
-    type: "1-комнатная",
-    floor: "2-5",
-    area: "36.83",
-    section: "2",
-  },
-  {
-    image: s2f25a5458,
-    type: "2-комнатная",
-    floor: "2-5",
-    area: "54.58",
-    section: "2",
-  },
-  {
-    image: s2f25a5459,
-    type: "2-комнатная",
-    floor: "2-5",
-    area: "54.59",
-    section: "2",
-  },
-];
+let plans = [];
+apartmentsPlansData.forEach((elem) => {
+  const apartmentType = (rooms) => {
+    if (rooms == 0) return "Студия"
+    if (rooms == 1) return "1-комнатная"
+    if (rooms == 2) return "2-комнатная"
+  }
+  plans.push({
+    image: elem.path,
+    type: apartmentType(elem.rooms),
+    floor: elem.floor,
+    area: elem.area,
+    section: elem.section,
+  })
+})
+
 const sectionPlans = {
   1: firstsection2and5floor,
   2: secondsection2and5floor,
