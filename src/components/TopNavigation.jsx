@@ -40,6 +40,12 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     textAlign: 'center !important',
   },
+  headerPhone: {
+    cursor: "pointer",
+    fontSize: 18,
+    color: "white",
+    textAlign: 'center !important',
+  },
   logo: {
     position: "absolute",
     top: 15,
@@ -87,29 +93,29 @@ export default function TopNavigation() {
                 direction="row"
                 justifyContent="space-between"
                 alignItems="center"
-                columns={{ lg: 23 }}
+                columns={{ lg: 30 }}
                 spacing={0}
                 className={classes.content}
               >
-                <Grid item lg={3}>
+                <Grid item lg={4}>
                   <a href="#about_complex" className={classes.menuItem}>
                     О КОМПЛЕКСЕ
                   </a>
                 </Grid>
 
-                <Grid item lg={3}>
+                <Grid item lg={4}>
                   <a href="#dignities" className={classes.menuItem}>
                     ДОСТОИНСТВА
                   </a>
                 </Grid>
 
-                <Grid item lg={3}>
+                <Grid item lg={4}>
                   <a href="#plans" className={classes.menuItem}>
                     ПЛАНИРОВКИ
                   </a>
                 </Grid>
 
-                <Grid item lg={5}>
+                <Grid item lg={6}>
                   <a href="">
                     <img
                       src={logo}
@@ -126,15 +132,15 @@ export default function TopNavigation() {
                   </a>
                 </Grid>
 
-                <Grid item lg={3}>
+                <Grid item lg={4}>
                   <a href="#documents" className={classes.menuItem}>
                     ДОКУМЕНТЫ
                   </a>
                 </Grid>
 
-                <Grid item lg={2}>
-                <a href="#contacts" className={classes.menuItem}>
-                    КОНТАКТЫ
+                <Grid item lg={4}>
+                <a href="tel:8 800 550 30 99" className={classes.headerPhone}>
+                  8 800 550 30 99
                 </a>
                   {/* <a href="" className={classes.social}>
                     <img src={VkLogo} alt="Логотип Вконтакте" width="30"></img>
