@@ -71,13 +71,32 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: "center",
     },
   },
+  imgWrapper: {
+    position: 'relative',
+    padding: '0 !important',
+    paddingTop: '40px !important'
+  },
+  imageComment: {
+    position: 'absolute',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    height: 50,
+    backgroundColor: '#4c4c4c',
+    bottom: 3,
+    color: 'white',
+    fontSize: 18,
+    textAlign: 'center',
+    cursor: 'pointer'
+  },
 }));
 
 export default function Location() {
   const classes = useStyles();
   const theme = useTheme();
-  const fullScreenMD = useMediaQuery(theme.breakpoints.down("md"));
-  const fullScreenSM = useMediaQuery(theme.breakpoints.down("sm"));
+  const fullScreenMD = useMediaQuery(theme.breakpoints.down("md")); // 900px
+  const fullScreenSM = useMediaQuery(theme.breakpoints.down("sm")); // 600px
   const [modal, setModal] = React.useState(false);
 
 
@@ -96,12 +115,12 @@ export default function Location() {
         <Grid
           container
           direction={fullScreenMD ? "column" : "row"}
-          spacing={4}
+          spacing={fullScreenMD ? 0 : 4}
           justifyContent="space-between"
           alignItems="center"
           className={fullScreenSM ? classes.mobileContent : classes.content}
         >
-          <Grid item xs={5}>
+          <Grid item xs={6}>
             <Grid
               container
               direction="column"
@@ -148,7 +167,8 @@ export default function Location() {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={6} className={classes.imgWrapper}>
+            <div className={classes.imageComment} onClick={() => { setModal(Map) }}>Нажмите на изображение, чтобы открыть его на весь экран</div>
             <img src={Map} alt="Карта" className={classes.map} onClick={() => { setModal(Map) }} width="100%" />
           </Grid>
         </Grid>
