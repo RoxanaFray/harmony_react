@@ -168,7 +168,8 @@ export default function AboutComplex(props) {
 							<Grid item xs={4} className={classes.numberBlock}>
 								<Grid
 									container
-									direction={fullScreenSM ? "column" : "row"}
+									direction="row"
+									columns={14}
 									spacing={4}
 									justifyContent="space-between"
 									alignItems="center"
@@ -189,7 +190,7 @@ export default function AboutComplex(props) {
 											</Grid>
 										</Grid>
 									</Grid>
-									<Grid item xs={4}>
+									<Grid item xs={6}>
 										<Grid container direction="column" alignItems="center">
 											<Grid
 												item
