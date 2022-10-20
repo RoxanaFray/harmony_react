@@ -23,7 +23,7 @@
 //                     section: apartmentParams[1],
 //                     area: apartmentParams[2],
 //                     rooms: apartmentParams[3],
-//                     path: `${entriesStaticPath}${file}.png`
+//                     path: `${file}.png`
 //                 })
 //             }
 //         });

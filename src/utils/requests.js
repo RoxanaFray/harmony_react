@@ -11,7 +11,7 @@ async function awsMail(data) {
 }
 async function awsB24Lead(data) {
   const awsUrl = 'https://c57xkv9es8.execute-api.eu-central-1.amazonaws.com/default/B24_Create_Lead';
-  return await fetch(`${awsUrl}?phone=${data.phone}&name=${data.name}`, {
+  return await fetch(`${awsUrl}?phone=${data.phone}&name=${encodeURIComponent(data.name)}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
