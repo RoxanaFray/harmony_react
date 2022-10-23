@@ -2,7 +2,7 @@ import * as React from "react";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import { makeStyles } from "@mui/styles";
-import houseImage from "../images/cam_02_fx.png";
+import houseImage from "../images/cam_04_fx.png";
 import Typography from "@mui/material/Typography";
 import CallbackForm from "./CallbackForm";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -168,7 +168,8 @@ export default function AboutComplex(props) {
 							<Grid item xs={4} className={classes.numberBlock}>
 								<Grid
 									container
-									direction={fullScreenSM ? "column" : "row"}
+									direction="row"
+									columns={14}
 									spacing={4}
 									justifyContent="space-between"
 									alignItems="center"
@@ -189,7 +190,7 @@ export default function AboutComplex(props) {
 											</Grid>
 										</Grid>
 									</Grid>
-									<Grid item xs={4}>
+									<Grid item xs={6}>
 										<Grid container direction="column" alignItems="center">
 											<Grid
 												item
