@@ -168,7 +168,7 @@ export default function Location() {
             </Grid>
           </Grid>
           <Grid item xs={6} className={classes.imgWrapper}>
-            <div className={classes.imageComment} onClick={() => { setModal(Map) }}>Нажмите на изображение, чтобы открыть его на весь экран</div>
+            <div className={classes.imageComment} onClick={() => { setModal(Map) }}>Нажмите на изображение, чтобы раскрыть его на весь экран</div>
             <img src={Map} alt="Карта" className={classes.map} onClick={() => { setModal(Map) }} width="100%" />
           </Grid>
         </Grid>

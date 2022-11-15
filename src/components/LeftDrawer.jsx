@@ -47,6 +47,13 @@ const useStyles = makeStyles((theme) => ({
   divider: {
     backgroundColor: "white !important",
   },
+  number: {
+    bottom: 40,
+    left: 50,
+    fontSize: 24,
+    color: 'white',
+    position: 'absolute'
+  }
 }));
 
 const LinkArr = [
@@ -140,6 +147,7 @@ export default function LeftDrawer() {
               })}
             </List>
           </ThemeProvider>
+          <a className={classes.number} href="tel:8 800 550 30 99">8 800 550 30 99</a>
         </div>
       </SwipeableDrawer>
     </>
