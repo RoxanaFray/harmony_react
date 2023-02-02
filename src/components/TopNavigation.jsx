@@ -60,6 +60,15 @@ const useStyles = makeStyles((theme) => ({
     left: "50%",
     marginLeft: "-70px",
   },
+  mobileHeaderPhone: {
+    cursor: "pointer",
+    fontSize: 13,
+    color: "white",
+    textAlign: 'center !important',
+    display: 'block',
+    position: 'absolute',
+    right: 0
+  }
 }));
 
 const DesktopMenu = styled("div")(({ theme }) => ({
@@ -79,7 +88,6 @@ const MobileMenu = styled("div")(({ theme }) => ({
 
 export default function TopNavigation() {
   const classes = useStyles();
-
 
   return (
     <ThemeProvider theme={theme}>
@@ -116,7 +124,7 @@ export default function TopNavigation() {
                 </Grid>
 
                 <Grid item lg={6}>
-                  <a href="">
+                  <a href="/">
                     <img
                       src={logo}
                       width="180"
@@ -171,13 +179,16 @@ export default function TopNavigation() {
           <Container className={classes.container}>
             <Toolbar>
               <LeftDrawer />
-              <a href="">
+              <a href="/">
                 <img
                   src={logo}
                   width="140"
                   alt="Логотип"
                   className={classes.mobileLogo}
                 ></img>
+              </a>
+              <a href="tel:8 800 550 30 99" className={classes.mobileHeaderPhone}>
+                  8 800 550 30 99
               </a>
             </Toolbar>
           </Container>
