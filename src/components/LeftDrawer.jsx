@@ -128,8 +128,8 @@ export default function LeftDrawer() {
       >
         <div className={classes.drawerContent}>
           <div className={classes.logo}>
-            <a href="#">
-              <img src={logo} width="200px"></img>
+            <a href="/">
+              <img src={logo} width="200px" alt="logo"></img>
             </a>
           </div>
 

@@ -52,7 +52,6 @@ const useStyles = makeStyles((theme) => ({
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
@@ -282,7 +281,7 @@ const sectionPlans = {
 const allFlatTypes = apartmentsPlans
   .map((elem) => elem.type)
   .filter(function (item, pos, array) {
-    return array.indexOf(item) == pos;
+    return array.indexOf(item) === pos;
   });
 
 function Plans(props) {
@@ -333,6 +332,7 @@ function Plans(props) {
         <Fade in={modal}>
           <Box sx={classes.modalBlock}>
             <img
+              alt="Планы секций"
               src={sectionPlans[section]}
               className={classes.modalImage}
             />
@@ -451,7 +451,7 @@ function Plans(props) {
                         >
                           <img
                             src={plansArr[activeStep]?.image}
-                            alt="image not found"
+                            alt="Изображение планировки"
                             className={classes.planImage}
                           />
                         </div>
@@ -618,6 +618,7 @@ function Plans(props) {
                       >
                         <img
                           src={sectionPlans[section]}
+                          alt="Изображение этажа"
                           className={classes.floorImage}
                           onClick={() => { setModal(section) }}
                         />
