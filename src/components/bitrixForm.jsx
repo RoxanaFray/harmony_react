@@ -11,6 +11,6 @@ export default function BitrixForm() {
     startBitrixFunction(window, document, 'https://cdn-ru.bitrix24.ru/b27375882/crm/form/loader_18.js')
     
     return (
-        <script data-b24-form="inline/18/sr1xz8" data-skip-moving-"true"/>
+        <script data-b24-form="inline/18/sr1xz8" data-skip-moving="true"/>
     )
 }
