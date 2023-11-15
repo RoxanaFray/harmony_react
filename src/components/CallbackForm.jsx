@@ -236,8 +236,8 @@ export default function CallbackForm(props) {
           <Grid item>
             <img src={Logo} width="80" alt="Логотип" />
           </Grid>
-          <BitrixForm/>
-         /* <ThemeProvider theme={theme}>
+          <BitrixForm />
+          {/* <ThemeProvider theme={theme}>
             <Grid item>
               <TextField
                 id="outlined-basic"
@@ -303,7 +303,7 @@ export default function CallbackForm(props) {
                 </Typography>
               </Fab>
             </Grid>
-          </ThemeProvider>*/
+          </ThemeProvider> */}
           {/*     <Grid item>
     <Checkbox {...label} defaultChecked />
     Я принимаю политику в отношении обработки и защиты персональных данных и даю своё согласие на обработку моих персональных данных. 
