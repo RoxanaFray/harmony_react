@@ -19,7 +19,7 @@ import Backdrop from "@mui/material/Backdrop";
 import MuiAlert from "@mui/material/Alert";
 import CircularProgress from "@mui/material/CircularProgress";
 import Snackbar from "@mui/material/Snackbar";
-
+import BitrixForm from "./bitrixForm"
 import { awsB24Lead, awsMail } from "../utils/requests";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -236,7 +236,8 @@ export default function CallbackForm(props) {
           <Grid item>
             <img src={Logo} width="80" alt="Логотип" />
           </Grid>
-          <ThemeProvider theme={theme}>
+          <BitrixForm/>
+         /* <ThemeProvider theme={theme}>
             <Grid item>
               <TextField
                 id="outlined-basic"
@@ -302,7 +303,7 @@ export default function CallbackForm(props) {
                 </Typography>
               </Fab>
             </Grid>
-          </ThemeProvider>
+          </ThemeProvider>*/
           {/*     <Grid item>
     <Checkbox {...label} defaultChecked />
     Я принимаю политику в отношении обработки и защиты персональных данных и даю своё согласие на обработку моих персональных данных. 
